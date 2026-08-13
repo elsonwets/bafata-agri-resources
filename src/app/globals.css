@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens. Every colour is drawn from the emblem or from the
+ * photography itself: the jute is the sacks, the gold is the light on
+ * the laterite.
+ */
+@theme {
+  --color-ink: #07102d;
+  --color-navy: #1b2a5e;
+  --color-jute: #d8cbb0;
+  --color-gold: #c9a227;
+  --color-bone: #f4f1ea;
+
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  /* Lenis drives smooth scrolling; native smooth would fight it. */
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+ * The motion gate. Every animated component also checks this in JS, but
+ * declaring it here means anything that slips through still settles.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus is always visible, and always legible against the deep navy. */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Photography is graded into the palette rather than dropped on top. */
+.photo-graded {
+  filter: contrast(1.12) saturate(0.92);
+}

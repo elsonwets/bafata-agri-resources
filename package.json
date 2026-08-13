@@ -1,0 +1,48 @@
+{
+  "name": "landingv2",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "images": "node scripts/optimize-images.mjs",
+    "redact": "node scripts/redact-livery.mjs",
+    "dots": "node scripts/build-dot-fields.mjs"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "next": "^15.5.23",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/three": "^0.185.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "autoprefixer": "^10.5.4",
+    "jsdom": "^30.0.1",
+    "postcss": "^8.5.26",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "sharp@0.35.3": true
+  },
+  "private": true
+}
