@@ -59,3 +59,16 @@ body {
 .photo-graded {
   filter: contrast(1.12) saturate(0.92);
 }
+
+/*
+ * Marquee. Translating by exactly half the doubled row means the loop
+ * point lands where the duplicate begins, so the seam is invisible.
+ */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

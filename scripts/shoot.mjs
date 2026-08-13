@@ -66,11 +66,16 @@ const SHOTS = [
   { name: "02-corridor-start", width: 1440, height: 900, at: "#chain" },
   { name: "03-corridor-mid", width: 1440, height: 900, at: "#chain", progress: 0.45 },
   { name: "04-corridor-end", width: 1440, height: 900, at: "#chain", progress: 0.92 },
-  { name: "05-sourcing", width: 1440, height: 900, at: "#sourcing" },
-  { name: "06-markets", width: 1440, height: 900, at: "#markets" },
-  { name: "07-mobile-hero", width: 390, height: 844, at: "#top" },
-  { name: "08-mobile-chain", width: 390, height: 844, at: "#chain" },
-  { name: "09-mobile-sourcing", width: 390, height: 844, at: "#sourcing" },
+  { name: "05-operation", width: 1440, height: 900, at: "#operation" },
+  { name: "06-sourcing", width: 1440, height: 900, at: "#sourcing" },
+  { name: "07-markets", width: 1440, height: 900, at: "#markets" },
+  { name: "08-portal", width: 1440, height: 900, at: "#portal" },
+  { name: "09-essay", width: 1440, height: 900, at: "#essay" },
+  { name: "10-faq", width: 1440, height: 900, at: "#faq" },
+  { name: "11-contact", width: 1440, height: 900, at: "#contact" },
+  { name: "12-mobile-hero", width: 390, height: 844, at: "#top" },
+  { name: "13-mobile-operation", width: 390, height: 844, at: "#operation" },
+  { name: "14-mobile-contact", width: 390, height: 844, at: "#contact" },
 ];
 
 async function main() {
