@@ -72,7 +72,19 @@ export const ALT: Record<ImageSlug, string> = {
   "quay-truck-vessel":
     "A sheeted trailer standing on the quay directly alongside the hull " +
     "of the vessel it will be loaded into.",
+  "village-buying-point":
+    "A village buying point under cashew trees: filled jute sacks standing " +
+    "on red laterite beside a mechanical platform scale, with a heap of " +
+    "loose raw cashew nuts in the foreground.",
 };
+
+/**
+ * Images that were generated rather than photographed. Only the village
+ * buying point qualifies: no frame in the client's set covers the start
+ * of the chain. Kept as data so the page can label it if that is ever
+ * required, and so the distinction is not lost in a comment.
+ */
+export const GENERATED_SLUGS: ImageSlug[] = ["village-buying-point"];
 
 export const IMAGES = generated as Record<ImageSlug, ImageMeta>;
 

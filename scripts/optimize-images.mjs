@@ -9,12 +9,22 @@
  */
 import sharp from "sharp";
 import { mkdir, readdir, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
-const SRC = join(ROOT, "assets/redacted");
+/**
+ * Two sources, both downstream of a deliberate step. `redacted` holds
+ * the client's own frames after the livery pass; `generated` holds the
+ * few plates that no photograph covers. Neither is the original Drive
+ * folder, so nothing unprocessed can reach public/ by accident.
+ */
+const SOURCES = [
+  join(ROOT, "assets/redacted"),
+  join(ROOT, "assets/generated"),
+];
 const OUT = join(ROOT, "public/images");
 const GENERATED = join(ROOT, "src/data/images.generated.json");
 
@@ -62,14 +72,26 @@ const SLUGS = {
   "DJI_0641.JPG": "depot-yard-aerial",
   "DJI_0666.JPG": "depot-overview",
   "DJI_0675.JPG": "quay-truck-vessel",
+
+  // Generated. No frame in the client's set shows a village buying
+  // point, which is where the whole chain starts, so this one plate is
+  // made rather than photographed.
+  "village-buying-point.png": "village-buying-point",
 };
 
 async function main() {
   await mkdir(OUT, { recursive: true });
   await mkdir(dirname(GENERATED), { recursive: true });
-  const files = (await readdir(SRC)).filter((f) => /\.jpe?g$/i.test(f));
 
-  const missing = files.filter((f) => !SLUGS[f]);
+  const files = [];
+  for (const dir of SOURCES) {
+    if (!existsSync(dir)) continue;
+    for (const name of await readdir(dir)) {
+      if (/\.(jpe?g|png)$/i.test(name)) files.push({ name, dir });
+    }
+  }
+
+  const missing = files.filter((f) => !SLUGS[f.name]).map((f) => f.name);
   if (missing.length) {
     console.error(`No slug defined for: ${missing.join(", ")}`);
     process.exit(1);
@@ -78,9 +100,9 @@ async function main() {
   const generated = {};
   let oversize = 0;
 
-  for (const file of files) {
-    const slug = SLUGS[file];
-    const input = join(SRC, file);
+  for (const file of files.sort((a, b) => a.name.localeCompare(b.name))) {
+    const slug = SLUGS[file.name];
+    const input = join(file.dir, file.name);
     const meta = await sharp(input).metadata();
     const widths = WIDTHS.filter((w) => w <= meta.width);
     if (!widths.length) widths.push(meta.width);
@@ -117,7 +139,7 @@ async function main() {
       aspect: Number((meta.width / meta.height).toFixed(4)),
       avifWidths: widths,
       webpWidths: widths.filter((w) => w <= WEBP_MAX_WIDTH),
-      source: file,
+      source: file.name,
     };
     console.log(
       `${slug.padEnd(24)} ${meta.width}x${meta.height}  ${widths.join(", ")}`,

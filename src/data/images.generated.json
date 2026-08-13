@@ -287,5 +287,21 @@
       1600
     ],
     "source": "DJI_0675.JPG"
+  },
+  "village-buying-point": {
+    "width": 2048,
+    "height": 1360,
+    "aspect": 1.5059,
+    "avifWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "village-buying-point.png"
   }
 }

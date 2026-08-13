@@ -27,7 +27,7 @@ export const CHAIN: Beat[] = [
       "Purchasing happens at village level across the interior, lot by lot, " +
       "on the scale and in front of the grower. Nothing is bought sight " +
       "unseen from an intermediary.",
-    slug: "depot-aerial-wide",
+    slug: "village-buying-point",
     places: ["Bafatá", "Bambadinca", "Bissau"],
   },
   {
@@ -37,7 +37,7 @@ export const CHAIN: Beat[] = [
     body:
       "Loaded trailers run the corridor from the interior down to the " +
       "capital. Each load is sheeted and roped before it leaves the yard.",
-    slug: "depot-yard-aerial",
+    slug: "depot-fleet-aerial",
     places: ["Bafatá", "Bambadinca", "Bissau"],
   },
   {
