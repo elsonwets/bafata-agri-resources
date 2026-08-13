@@ -1,4 +1,6 @@
-import { unproject, type BBox, type Size } from "./projection";
+// Explicit extension so this module also loads under raw Node ESM in
+// scripts/build-dot-fields.mjs, not only through the bundler.
+import { unproject, type BBox, type Size } from "./projection.ts";
 
 export type Dot = { x: number; y: number; id: string };
 
