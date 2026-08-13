@@ -30,9 +30,11 @@ Carried over from `landing-bafata-v1/PRODUCT.md` and reaffirmed here.
   — the three the client stated.
 - The client portal is illustrative until real interfaces are supplied.
   Every portal visual carries a visible "illustrative preview" label.
-- The trucks photographed in the asset set carry BADORRA / General
-  Trading livery. The page makes no claim about fleet ownership, and
-  cut-out framing avoids presenting third-party branding as Bafatá's.
+- **BADORRA has no relationship with Bafatá Agri Resources.** Several
+  photographs show trucks and signage carrying BADORRA / General
+  Trading livery. Every legible instance is blurred out before the
+  image ships. See §10.2 for the procedure. Where the livery cannot be
+  removed cleanly, the frame is dropped rather than published.
 - Partners named: AgroTrucks, AgroStock. Nothing beyond that.
 
 ## 4. Brand and art direction
@@ -77,12 +79,43 @@ the RNG:
 1. **Nav** — floating glass pill, centred animated emblem.
 2. **Attention** — Hero, Editorial Split.
 3. **Interest** — gapless bento of the operation.
-4. **Desire** — Corridor sequence, Guinea-Bissau map, CRM card stack,
-   scrubbing text reveal, export globe, photo-essay carousel, marquee.
+4. **Desire** — Corridor sequence, Guinea-Bissau sourcing map, CRM card
+   stack, scrubbing text reveal, world export map, photo-essay
+   carousel, marquee.
 5. **Action** — full-bleed CTA, contact form, FAQ, footer.
 
 Section rhythm: `py-32 md:py-48` between major sections.
 Page root: `<main className="overflow-x-hidden w-full max-w-full">`.
+
+## 5.1 Hero copy
+
+Written against `.agents/product-marketing.md` using the
+*{outcome} without {pain point}* formula. Both head keywords sit in the
+H1, so the formula costs nothing in search.
+
+**H1** (`max-w-5xl`, `clamp(3rem, 5.2vw, 5.5rem)`, two lines):
+
+> Raw cashew nuts from Guinea-Bissau.
+> Without a company in Guinea-Bissau.
+
+**Subheadline:**
+
+> We buy village by village, grade and store in Bafatá, stuff at our
+> own warehouse and load at the port of Bissau. Where you'd rather not
+> incorporate here, we can ship in our own name.
+
+**CTAs:** `Start a conversation` (gold fill, navy text) and
+`Follow the chain ↓` (white outline). Two only. No badges, no pill
+tags, no stats in the hero.
+
+The claim in line two is load-bearing and is the company's stated
+differentiator, qualified on the page by "subject to contractual and
+regulatory validation" where it is expanded in the body.
+
+Tone rules for all page copy, per `.agents/product-marketing.md` §9:
+plain, concrete, unexcited; trade vocabulary kept (`RCN`, `KOR`,
+outturn, stuffing, `FOB Bissau`); no superlatives, no exclamation
+marks, no "seamless" or "world-class".
 
 ## 6. The Corridor — centrepiece scroll sequence
 
@@ -104,8 +137,9 @@ This is the United Carriers technique, applied to Bafatá's own chain.
 truck at rest. On first scroll it does not cross-fade out — it pulls
 away and enters beat 2. Hero and Corridor read as one continuous shot.
 
-**Handoff.** Beat 5's arcs resolve directly into the Three.js export
-globe, so the Corridor and the globe are one narrative move.
+**Handoff.** Beat 5's arcs resolve directly into the world export map
+(§7.3), so the Corridor and the map are one narrative move rather than
+two adjacent sections.
 
 **Degradation.**
 - `prefers-reduced-motion: reduce` → the pin is not created; the
@@ -117,30 +151,79 @@ globe, so the Corridor and the globe are one narrative move.
 
 ## 7. Other set-pieces
 
-**Guinea-Bissau map.** Inline SVG built from real GeoJSON of the nine
-administrative regions. Bafatá emphasised. Hover reveals region name
-and role in sourcing. Animated route line converging on the port of
-Bissau. SVG rather than Three.js: crisper, keyboard-accessible, and the
-region names are indexable text.
+### 7.1 The dot-matrix map system
 
-**CRM card stack.** GSAP card stacking of portal screens — stock, lots,
-contracts, shipment milestones. Every card visibly labelled as an
-illustrative preview. CTA opens the portal waitlist form.
+Both maps on the page share one visual grammar, derived from the
+United Carriers map and rebuilt procedurally. Their implementation is a
+dotted world PNG with absolutely-positioned SVG overlays of
+`<circle r="5">` on a 10px grid, in two families: solid brand-coloured
+dots for real locations, and `opacity: 0.16` dots for network reach.
+Several sibling overlay layers each hold a different scatter of faint
+dots, and cycling between them makes the coverage appear to twinkle.
 
-**Scrubbing text reveal.** The positioning statement, word opacity
-scrubbed `0.1 → 1`.
+We rebuild this properly rather than copying it:
 
-**Export globe.** Three.js sphere with great-circle arcs from Bissau to
-India, the UAE and Vietnam. Only those three.
+- Dots are **generated from real GeoJSON**, not sampled from a bitmap.
+  A point-in-polygon test over a 10px lattice yields the dot field, so
+  it is crisp at any size, themeable, and has no image payload.
+- Rendered as a single inline SVG per map, with dots as `<circle>`
+  elements grouped by region or by country.
+- The twinkle is one GSAP timeline driving opacity on pseudo-random
+  subsets, seeded so it is deterministic, and it respects
+  `prefers-reduced-motion`.
 
-**Infinite marquee.** AgroTrucks, AgroStock, destination markets,
-Incoterms.
+**Interactions**, matching the reference and extending it:
+- Faint coverage dots twinkle continuously in randomised groups.
+- Solid dots mark real locations and do not animate away.
+- Hover or focus on a region/market raises its dots to full opacity,
+  dims the rest, and shows a label.
+- Dots stagger in on scroll-into-view, radiating outward from the
+  origin point.
 
-**Photo-essay carousel.** The montage of company images: overlapping
-frames, factual captions, arrow control.
+### 7.2 Guinea-Bissau sourcing map
 
-**Bento grid.** Five cards, `grid-flow-dense`, 4 columns × 3 rows = 12
-cells filled exactly by spans of 4+2+2+2+2. No empty cells.
+The dot field is generated from the nine administrative regions.
+Bafatá's dots are solid gold; the other regions are faint. Hover or
+keyboard focus on a region raises it and reveals its name and role in
+sourcing. An animated line traces from the sourcing regions to the port
+of Bissau. Region names are real text in the SVG, so they are
+indexable and screen-reader accessible.
+
+### 7.3 World export map
+
+The same grammar at world scale, replacing what was previously
+specified as a Three.js globe. A flat dot field of the world's
+landmasses: Bissau solid gold as the origin, India, the UAE and Vietnam
+solid as destinations, everything else faint and twinkling. Animated
+great-circle arcs run Bissau → each destination and fire in sequence as
+beat 5 of the Corridor resolves.
+
+Dropping the globe keeps one visual language instead of two competing
+ones, and removes a WebGL scene from the page weight.
+
+### 7.4 CRM card stack
+
+GSAP card stacking of portal screens — stock, lots, contracts, shipment
+milestones. Every card visibly labelled as an illustrative preview. CTA
+opens the portal waitlist form.
+
+### 7.5 Scrubbing text reveal
+
+The positioning statement, word opacity scrubbed `0.1 → 1`.
+
+### 7.6 Infinite marquee
+
+AgroTrucks, AgroStock, destination markets, Incoterms.
+
+### 7.7 Photo-essay carousel
+
+The montage of company images: overlapping frames, factual captions,
+arrow control.
+
+### 7.8 Bento grid
+
+Five cards, `grid-flow-dense`, 4 columns × 3 rows = 12 cells filled
+exactly by spans of 4+2+2+2+2. No empty cells.
 
 ## 8. Header logo animation
 
@@ -157,8 +240,8 @@ both tied to scroll velocity. Collapses to the static mark under
 
 - **Next.js 15**, App Router, static export target.
 - **GSAP** + ScrollTrigger for all scroll choreography.
-- **Three.js** for the hero particle field, Corridor atmosphere layer,
-  and export globe. Loaded dynamically, client-only.
+- **Three.js** for the hero particle field and the Corridor atmosphere
+  layer only. Loaded dynamically, client-only. Both maps are SVG.
 - **Lenis** for smooth scroll, matching v1.
 - **Tailwind** for layout; design tokens as CSS variables.
 - Form posts to **Formspree** via `NEXT_PUBLIC_FORMSPREE_ENDPOINT`,
@@ -170,16 +253,49 @@ both tied to scroll velocity. Collapses to the static mark under
 Source: 60 JPGs, 3–7 MB each, in
 `Downloads/drive-download-20260722T010222Z-1-001`. Unusable as shipped.
 
-1. Select ~20 frames.
-2. `sharp` → AVIF + WebP, widths 640/1024/1600/2400, target 150–300 KB.
-3. Output to `public/images/`, served through `next/image`.
-4. Cut-out plates for the Corridor produced via Higgsfield
-   `remove_background`, stored as PNG with alpha.
-5. Every image gets hand-written descriptive `alt` text.
+### 10.1 Optimisation
 
-**Higgsfield budget** (963 credits available): the beat-1 village
-plate, background cut-out passes, one cinematic clip behind the final
-CTA, and one OG image. Nothing that duplicates existing photography.
+1. Select ~20 frames.
+2. Redact third-party livery per §10.2 — this happens *before* any
+   other processing.
+3. `sharp` → AVIF + WebP, widths 640/1024/1600/2400, target 150–300 KB.
+4. Output to `public/images/`, served through `next/image`.
+5. Cut-out plates for the Corridor produced via Higgsfield
+   `remove_background`, stored as PNG with alpha.
+6. Every image gets hand-written descriptive `alt` text.
+
+### 10.2 Third-party livery removal (BADORRA)
+
+BADORRA / General Trading has no relationship with Bafatá Agri
+Resources. Publishing their livery on this page would misrepresent both
+companies, so it is removed, not merely cropped around.
+
+Procedure, run as a scripted pass so it is repeatable and auditable:
+
+1. Inspect each of the ~20 selected frames at full resolution and
+   record every region where BADORRA, General Trading, or any other
+   third-party mark is legible — cab doors, trailer sides, yard
+   signage, number plates.
+2. Apply a heavy Gaussian blur to those regions, sized so no letterform
+   survives, with a feathered edge so the result does not read as a
+   censorship box.
+3. Region coordinates live in a committed manifest
+   (`scripts/livery-redactions.json`) keyed by source filename, so the
+   pass can be re-run from originals at any time and reviewed.
+4. Re-inspect every processed frame at full resolution before it is
+   allowed into `public/`. Any frame where the mark is still readable,
+   or where blurring destroys the image, is dropped from the selection.
+5. Corridor cut-outs are derived from already-redacted frames, never
+   from the originals.
+
+The page makes no claim about fleet ownership anywhere in its copy.
+
+### 10.3 Higgsfield budget
+
+963 credits available. Spent on: the beat-1 village plate, the
+background-removal passes for the Corridor cut-outs, one cinematic clip
+behind the final CTA, and one OG image. Nothing that duplicates
+photography the client already owns.
 
 ## 11. SEO
 
