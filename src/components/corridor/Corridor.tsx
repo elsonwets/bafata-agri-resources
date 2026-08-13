@@ -102,13 +102,18 @@ export function Corridor() {
     <section
       ref={sectionRef}
       id="chain"
-      aria-label="From village scale to vessel hold"
       className="relative md:h-svh md:overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 px-6 pt-28 sm:px-10 md:pt-32">
-        <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-gold)]">
+        {/*
+          A real h2, not a styled paragraph. The beats below are h3, so
+          without it the document skips a level straight from the hero's
+          h1, which is exactly the kind of thing that only shows up when
+          something checks.
+        */}
+        <h2 className="text-xs uppercase tracking-[0.28em] text-[color:var(--color-gold)]">
           Village scale to vessel hold
-        </p>
+        </h2>
         <div className="mt-4 h-px w-full max-w-md bg-[color:var(--color-bone)]/15">
           <div
             data-rail-fill
