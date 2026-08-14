@@ -41,6 +41,13 @@ export const FAQ: FaqEntry[] = [
       "Bissau for stuffing and loading.",
   },
   {
+    question: "Have you exported for anyone we can name?",
+    answer:
+      "JKT is a repeat buyer we have shipped for. Our consignment placards " +
+      "are in the windscreens of the trucks photographed on this page. We " +
+      "do not list buyers who have not agreed to be named.",
+  },
+  {
     question: "Which markets do you ship to?",
     answer:
       "India, the United Arab Emirates and Vietnam. Every consignment " +

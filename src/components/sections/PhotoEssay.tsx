@@ -13,6 +13,12 @@ import type { ImageSlug } from "@/data/images";
  */
 const FRAMES: { slug: ImageSlug; caption: string }[] = [
   {
+    slug: "team-fleet",
+    caption:
+      "The team in front of the loaded fleet, our consignment placards in " +
+      "the windscreens.",
+  },
+  {
     slug: "warehouse-sack-relay",
     caption: "Sacks moving hand to hand across the warehouse floor.",
   },
@@ -21,8 +27,16 @@ const FRAMES: { slug: ImageSlug; caption: string }[] = [
     caption: "Building the stack, one lot at a time.",
   },
   {
+    slug: "truck-weighbridge",
+    caption: "On the weighbridge before the run down to the capital.",
+  },
+  {
     slug: "depot-fleet-aerial",
     caption: "Sheeted trailers lined up in the yard before departure.",
+  },
+  {
+    slug: "quay-truck-line",
+    caption: "Waiting on the quay at Bissau, cranes working ahead.",
   },
   {
     slug: "quay-cranes-wide",
@@ -35,6 +49,10 @@ const FRAMES: { slug: ImageSlug; caption: string }[] = [
   {
     slug: "vessel-hold",
     caption: "The hold filling from the bottom up.",
+  },
+  {
+    slug: "director-fleet",
+    caption: "On the quay with the fleet loaded and the ship alongside.",
   },
   {
     slug: "director-waterfront",

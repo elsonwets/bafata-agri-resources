@@ -86,6 +86,17 @@ export function Bento() {
           portal, so you can see where a consignment stands from wherever you
           are.
         </p>
+
+        {/*
+          A named buyer we have actually shipped for, confirmed by the
+          client. One name stated plainly does more than a wall of
+          unattributed logos.
+        */}
+        <p className="mt-6 border-t border-white/10 pt-5 text-sm text-[color:var(--color-bone)]/45">
+          Shipping for{" "}
+          <span className="text-[color:var(--color-gold)]">JKT</span>, a repeat
+          buyer, since our first campaign together.
+        </p>
       </article>
     </div>
   );

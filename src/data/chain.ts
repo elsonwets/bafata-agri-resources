@@ -36,8 +36,9 @@ export const CHAIN: Beat[] = [
     heading: "Then it moves, sheeted and roped, to Bissau",
     body:
       "Loaded trailers run the corridor from the interior down to the " +
-      "capital. Each load is sheeted and roped before it leaves the yard.",
-    slug: "depot-fleet-aerial",
+      "capital. Each load is sheeted and roped before it leaves the yard, " +
+      "and weighed before it goes anywhere.",
+    slug: "truck-weighbridge",
     places: ["Bafatá", "Bambadinca", "Bissau"],
   },
   {
@@ -56,7 +57,7 @@ export const CHAIN: Beat[] = [
     body:
       "Sacks are moved from the stack to the trailer and on to the quay, " +
       "counted at each handover.",
-    slug: "warehouse-truck-load",
+    slug: "quay-truck-line",
   },
   {
     id: "vessel",

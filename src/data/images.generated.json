@@ -67,6 +67,125 @@
     ],
     "source": "4F4A1536.JPG"
   },
+  "warehouse-sack-carry": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1538.JPG"
+  },
+  "truck-loaded-yard": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1553.JPG"
+  },
+  "team-fleet": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1567.JPG"
+  },
+  "team-fleet-wide": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1568.JPG"
+  },
+  "truck-weighbridge": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1593.JPG"
+  },
+  "truck-weighbridge-cab": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1599.JPG"
+  },
+  "truck-weighbridge-loaded": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1605.JPG"
+  },
   "quay-trailer-unload": {
     "width": 6720,
     "height": 4480,
@@ -134,6 +253,40 @@
       1600
     ],
     "source": "4F4A1672.JPG"
+  },
+  "quay-truck-line": {
+    "width": 6720,
+    "height": 4480,
+    "aspect": 1.5,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1697.JPG"
+  },
+  "director-fleet": {
+    "width": 4480,
+    "height": 6720,
+    "aspect": 0.6667,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "4F4A1702.JPG"
   },
   "director-waterfront": {
     "width": 6720,
@@ -220,6 +373,23 @@
     ],
     "source": "DJI_0624.JPG"
   },
+  "warehouse-door-aerial": {
+    "width": 5464,
+    "height": 3070,
+    "aspect": 1.7798,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "DJI_0630.JPG"
+  },
   "warehouse-door-truck": {
     "width": 5464,
     "height": 3070,
@@ -254,6 +424,23 @@
     ],
     "source": "DJI_0641.JPG"
   },
+  "depot-warehouse-row": {
+    "width": 5464,
+    "height": 3070,
+    "aspect": 1.7798,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "DJI_0656.JPG"
+  },
   "depot-overview": {
     "width": 5464,
     "height": 3070,
@@ -287,6 +474,23 @@
       1600
     ],
     "source": "DJI_0675.JPG"
+  },
+  "quay-truck-alongside": {
+    "width": 5464,
+    "height": 3070,
+    "aspect": 1.7798,
+    "avifWidths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "webpWidths": [
+      640,
+      1024,
+      1600
+    ],
+    "source": "DJI_0676.JPG"
   },
   "village-buying-point": {
     "width": 2048,

@@ -18,11 +18,11 @@ export const COMPANY = {
   email: "contact@bafata-agri.com",
 
   /**
-   * Null until the client supplies the number. The WhatsApp call to
-   * action is not rendered while this is null, rather than pointing at
-   * a placeholder.
+   * Guinea-Bissau country code is 245. The CTA renders only when this is
+   * set, so an unconfigured deployment hides the button rather than
+   * linking somewhere useless.
    */
-  whatsapp: null as string | null,
+  whatsapp: "+245955903402" as string | null,
 
   origin: { label: "Port of Bissau", lon: -15.5977, lat: 11.8637 },
 
@@ -42,6 +42,12 @@ export const COMPANY = {
   },
 
   partners: ["AgroTrucks", "AgroStock"],
+
+  /**
+   * Named buyers the company has actually exported for, confirmed by the
+   * client. Only names supplied by them appear here.
+   */
+  clients: ["JKT"],
 
   formspree: process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? null,
 } as const;

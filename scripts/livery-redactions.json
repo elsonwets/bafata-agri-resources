@@ -13,38 +13,111 @@
     "4F4A1531.JPG",
     "4F4A1534.JPG",
     "4F4A1536.JPG",
+    "4F4A1538.JPG",
+    "4F4A1553.JPG",
+    "4F4A1567.JPG",
+    "4F4A1568.JPG",
+    "4F4A1593.JPG",
+    "4F4A1599.JPG",
+    "4F4A1605.JPG",
     "4F4A1621.JPG",
     "4F4A1628.JPG",
     "4F4A1657.JPG",
     "4F4A1672.JPG",
+    "4F4A1697.JPG",
+    "4F4A1702.JPG",
     "4F4A1711.JPG",
     "4F4A1727.JPG",
     "4F4A1740.JPG",
     "DJI_0622.JPG",
     "DJI_0624.JPG",
+    "DJI_0630.JPG",
     "DJI_0634.JPG",
     "DJI_0641.JPG",
+    "DJI_0656.JPG",
     "DJI_0666.JPG",
-    "DJI_0675.JPG"
+    "DJI_0675.JPG",
+    "DJI_0676.JPG"
   ],
 
   "dropped": {
-    "_reason": "Mark too large or too central to blur without destroying the photograph.",
-    "4F4A1538.JPG": "Brigid Agro printed across the foreground sack",
-    "4F4A1553.JPG": "BADORRA on cab door and side panel",
-    "4F4A1567.JPG": "BADORRA on trailer, tarp and cab band",
-    "4F4A1568.JPG": "BADORRA on cab band and trailer",
-    "4F4A1593.JPG": "BADORRA on grille, visor band and badge",
-    "4F4A1599.JPG": "BADORRA four times across visor, door and flank",
-    "4F4A1605.JPG": "BADORRA three times across visor and flank",
-    "4F4A1697.JPG": "BADORRA six times across two cabs",
-    "4F4A1702.JPG": "BADORRA on the trucks framing the subject",
-    "DJI_0630.JPG": "BADORRA four times across the foreground cabs; DJI_0634 covers the same warehouse door",
-    "DJI_0656.JPG": "General Trading signage, relationship to Bafata unconfirmed",
-    "DJI_0676.JPG": "near duplicate of DJI_0675, which is kept and redacted"
+    "_reason": "Nothing is dropped. The client asked for every frame to be published, with the BADORRA livery blurred."
+  },
+
+  "_notRedacted": {
+    "DJI_0656.JPG": "General Trading rents the warehouse to Bafata. A stated commercial relationship, published at the client's instruction.",
+    "4F4A1538.JPG": "Brigid Agro is a jute bag supplier's print on the sack itself, not a competing haulier's livery. Blurring it would destroy the foreground subject.",
+    "_JKT": "The JKT / Bafata Agri Resources windscreen placards in 4F4A1567, 4F4A1568 and 4F4A1702 are the client's own documents for a confirmed buyer. Left legible on purpose."
   },
 
   "redactions": {
+    "4F4A1553.JPG": [
+      { "x": 0.770, "y": 0.511, "w": 0.038, "h": 0.024 },
+      { "x": 0.860, "y": 0.556, "w": 0.079, "h": 0.036 }
+    ],
+    "4F4A1567.JPG": [
+      { "x": 0.305, "y": 0.145, "w": 0.130, "h": 0.068 },
+      { "x": 0.013, "y": 0.388, "w": 0.034, "h": 0.048 },
+      { "x": 0.038, "y": 0.368, "w": 0.046, "h": 0.044 },
+      { "x": 0.141, "y": 0.365, "w": 0.059, "h": 0.044 },
+      { "x": 0.681, "y": 0.381, "w": 0.056, "h": 0.040 },
+      { "x": 0.861, "y": 0.388, "w": 0.046, "h": 0.041 }
+    ],
+    "4F4A1568.JPG": [
+      { "x": 0.248, "y": 0.205, "w": 0.114, "h": 0.064 },
+      { "x": 0.013, "y": 0.411, "w": 0.046, "h": 0.040 },
+      { "x": 0.098, "y": 0.448, "w": 0.059, "h": 0.042 },
+      { "x": 0.588, "y": 0.435, "w": 0.059, "h": 0.042 },
+      { "x": 0.733, "y": 0.448, "w": 0.049, "h": 0.041 },
+      { "x": 0.876, "y": 0.463, "w": 0.048, "h": 0.039 },
+      { "x": 0.913, "y": 0.471, "w": 0.054, "h": 0.038 }
+    ],
+    "4F4A1593.JPG": [
+      { "x": 0.353, "y": 0.259, "w": 0.051, "h": 0.038 },
+      { "x": 0.413, "y": 0.415, "w": 0.068, "h": 0.032 },
+      { "x": 0.379, "y": 0.440, "w": 0.027, "h": 0.055 },
+      { "x": 0.859, "y": 0.479, "w": 0.033, "h": 0.024 }
+    ],
+    "4F4A1599.JPG": [
+      { "x": 0.222, "y": 0.385, "w": 0.038, "h": 0.024 },
+      { "x": 0.294, "y": 0.385, "w": 0.048, "h": 0.024 },
+      { "x": 0.397, "y": 0.374, "w": 0.069, "h": 0.035 },
+      { "x": 0.345, "y": 0.409, "w": 0.026, "h": 0.067 }
+    ],
+    "4F4A1605.JPG": [
+      { "x": 0.415, "y": 0.386, "w": 0.087, "h": 0.032 },
+      { "x": 0.321, "y": 0.386, "w": 0.063, "h": 0.032 },
+      { "x": 0.381, "y": 0.403, "w": 0.025, "h": 0.046 }
+    ],
+    "4F4A1697.JPG": [
+      { "x": 0.238, "y": 0.538, "w": 0.054, "h": 0.036 },
+      { "x": 0.293, "y": 0.511, "w": 0.066, "h": 0.038 },
+      { "x": 0.378, "y": 0.505, "w": 0.059, "h": 0.042 },
+      { "x": 0.455, "y": 0.541, "w": 0.060, "h": 0.036 },
+      { "x": 0.530, "y": 0.553, "w": 0.030, "h": 0.069 },
+      { "x": 0.563, "y": 0.538, "w": 0.054, "h": 0.036 },
+      { "x": 0.501, "y": 0.375, "w": 0.066, "h": 0.042 },
+      { "x": 0.671, "y": 0.391, "w": 0.036, "h": 0.030 }
+    ],
+    "4F4A1702.JPG": [
+      { "x": 0.395, "y": 0.303, "w": 0.092, "h": 0.029 },
+      { "x": 0.114, "y": 0.447, "w": 0.102, "h": 0.026 },
+      { "x": 0.045, "y": 0.453, "w": 0.022, "h": 0.070 },
+      { "x": 0.313, "y": 0.459, "w": 0.044, "h": 0.024 },
+      { "x": 0.564, "y": 0.446, "w": 0.072, "h": 0.025 },
+      { "x": 0.512, "y": 0.459, "w": 0.028, "h": 0.041 }
+    ],
+    "DJI_0630.JPG": [
+      { "x": 0.118, "y": 0.755, "w": 0.068, "h": 0.029 },
+      { "x": 0.190, "y": 0.728, "w": 0.036, "h": 0.025 },
+      { "x": 0.166, "y": 0.940, "w": 0.044, "h": 0.027 },
+      { "x": 0.136, "y": 0.927, "w": 0.028, "h": 0.055 },
+      { "x": 0.416, "y": 0.887, "w": 0.032, "h": 0.035 }
+    ],
+    "DJI_0676.JPG": [
+      { "x": 0.427, "y": 0.596, "w": 0.054, "h": 0.030 },
+      { "x": 0.495, "y": 0.590, "w": 0.040, "h": 0.027 }
+    ],
     "DJI_0624.JPG": [
       { "x": 0.512, "y": 0.663, "w": 0.062, "h": 0.038 }
     ],

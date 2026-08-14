@@ -32,6 +32,26 @@ export const ALT: Record<ImageSlug, string> = {
   "warehouse-truck-load":
     "Two workers carrying sacks on their heads onto a flatbed trailer " +
     "backed into the warehouse door.",
+  "warehouse-sack-carry":
+    "A worker carrying a filled jute sack on his shoulder past a stack " +
+    "waiting to be loaded.",
+  "truck-loaded-yard":
+    "A loaded trailer in the yard, sheeted in blue tarpaulin and roped " +
+    "down, with sacks stacked above the headboard.",
+  "team-fleet":
+    "The Bafata Agri Resources team gathered in front of the loaded " +
+    "trucks, with the company's own consignment placards in the " +
+    "windscreens.",
+  "team-fleet-wide":
+    "A wider view of the team in front of the fleet, trucks sheeted and " +
+    "ready to run down to Bissau.",
+  "truck-weighbridge":
+    "A loaded articulated truck standing on the weighbridge, its trailer " +
+    "sheeted end to end.",
+  "truck-weighbridge-cab":
+    "The cab of a loaded truck on the weighbridge, waiting for its ticket.",
+  "truck-weighbridge-loaded":
+    "A trailer under canvas on the weighbridge, loaded to the headboard.",
   "quay-trailer-unload":
     "A loaded trailer at the quay in Bissau being unloaded by hand, with " +
     "a cargo net laid out on the concrete ready for lifting.",
@@ -45,6 +65,21 @@ export const ALT: Record<ImageSlug, string> = {
   "vessel-hold":
     "Looking down into the open hold of the vessel, its floor covered " +
     "with jute sacks as a crew works across them.",
+  "quay-truck-line":
+    "A line of loaded trucks waiting on the quay at Bissau beside the " +
+    "harbour cranes and the vessel.",
+  "director-fleet":
+    "The director of Bafata Agri Resources standing on the quay in front " +
+    "of the loaded fleet, with the ship's crane behind him.",
+  "warehouse-door-aerial":
+    "The warehouse door seen from above, with trucks drawn up and sacks " +
+    "moving in and out.",
+  "depot-warehouse-row":
+    "The row of warehouses at the depot seen from the air, with the yard " +
+    "and access road in front.",
+  "quay-truck-alongside":
+    "A loaded truck standing on the quay directly under the ship's side, " +
+    "waiting its turn at the crane.",
   "director-waterfront":
     "The director of Bafata Agri Resources holding his son on the Bissau " +
     "waterfront, with the port and the estuary behind them.",
