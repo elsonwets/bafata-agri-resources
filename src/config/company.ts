@@ -15,14 +15,14 @@ export const COMPANY = {
   legalName: "Bafata Agri Resources, SARL",
   domain: "bafata-agri.com",
   url: "https://bafata-agri.com",
-  email: "contact@bafata-agri.com",
+  email: "nouna.esteves@gmail.com",
 
   /**
    * Guinea-Bissau country code is 245. The CTA renders only when this is
    * set, so an unconfigured deployment hides the button rather than
    * linking somewhere useless.
    */
-  whatsapp: "+245955903402" as string | null,
+  whatsapp: "+245955903406" as string | null,
 
   origin: { label: "Port of Bissau", lon: -15.5977, lat: 11.8637 },
 
