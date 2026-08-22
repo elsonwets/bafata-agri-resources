@@ -1,26 +1,366 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   BAFATA AGRI RESOURCES — Design tokens
+   Palette: forest canopy (the living background) + logo navy + cashew kernel
+   + a warm gold reserved exclusively for calls to action.
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Forest — the ground the whole site sits on */
+  --forest-950: #04120c;
+  --forest-900: #071c13;
+  --forest-850: #09241a;
+  --forest-800: #0c2c1f;
+  --forest-750: #0f3626;
+  --forest-700: #12412d;
+  --forest-600: #1a5539;
+  --forest-500: #257148;
+  --forest-400: #3a8f5e;
+  --leaf-400: #5fb37d;
+  --leaf-300: #8ccfa0;
+  --leaf-200: #b6e3c2;
+
+  /* Logo navy — brand marks, seals, the yantra */
+  --navy-900: #101f52;
+  --navy-800: #172c68;
+  --navy-600: #24409a;
+  --navy-400: #5470c9;
+
+  /* Cashew kernel + jute */
+  --cashew-100: #f7f0e2;
+  --cashew-200: #ecdcc1;
+  --cashew-300: #dcc59d;
+  --cashew-400: #c9a978;
+  --cashew-500: #ab8955;
+
+  /* Gold — CTA only. Never decorative. */
+  --gold-500: #c8963e;
+  --gold-400: #dcae55;
+  --gold-300: #ecc87e;
+
+  --cream: #f8f5ed;
+  --ink: #05100b;
+
+  /* Semantic */
+  --background: var(--forest-950);
+  --surface: var(--forest-900);
+  --surface-raised: var(--forest-850);
+  --foreground: var(--cream);
+  --muted-foreground: #a9c2b2;
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --accent: var(--gold-400);
+  --ring: var(--leaf-400);
+
+  /* Rhythm */
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --section-y: clamp(6rem, 12vw, 11rem);
+  --max-w: 88rem;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 @theme inline {
+  --color-forest-950: var(--forest-950);
+  --color-forest-900: var(--forest-900);
+  --color-forest-850: var(--forest-850);
+  --color-forest-800: var(--forest-800);
+  --color-forest-750: var(--forest-750);
+  --color-forest-700: var(--forest-700);
+  --color-forest-600: var(--forest-600);
+  --color-forest-500: var(--forest-500);
+  --color-forest-400: var(--forest-400);
+  --color-leaf-400: var(--leaf-400);
+  --color-leaf-300: var(--leaf-300);
+  --color-leaf-200: var(--leaf-200);
+
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-600: var(--navy-600);
+  --color-navy-400: var(--navy-400);
+
+  --color-cashew-100: var(--cashew-100);
+  --color-cashew-200: var(--cashew-200);
+  --color-cashew-300: var(--cashew-300);
+  --color-cashew-400: var(--cashew-400);
+  --color-cashew-500: var(--cashew-500);
+
+  --color-gold-500: var(--gold-500);
+  --color-gold-400: var(--gold-400);
+  --color-gold-300: var(--gold-300);
+
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted-foreground);
+
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-mono-data), ui-monospace, monospace;
+
+  --breakpoint-xs: 26rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  border-color: var(--border);
+}
+
+html {
+  background-color: var(--forest-950);
+  color-scheme: dark;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lenis drives the scroll; never let the browser fight it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
+  /* Transparent on purpose: the fixed forest canvas sits at z-index -10, and
+     an opaque body background would paint straight over it. The base colour
+     lives on <html> instead and propagates to the viewport canvas. */
+  background-color: transparent;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--gold-400);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Firefox / WebKit scrollbar in brand colours */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--forest-600) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forest-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--forest-600);
+  border-radius: 999px;
+  border: 3px solid var(--forest-950);
+}
+
+/* ==========================================================================
+   Typography primitives
+   ========================================================================== */
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.type-mega {
+  font-family: var(--font-display);
+  /* Sized so the longest hero line ("to the world.") stays on one line in
+     its column — a wrapped line breaks the per-line mask reveal. */
+  font-size: clamp(2.5rem, 6.6vw, 6.75rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.4vw, 4.75rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.type-lead {
+  font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.type-serif {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+}
+
+/* ==========================================================================
+   Layout helpers
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section-y {
+  padding-block: var(--section-y);
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-strong) 12%,
+    var(--border-strong) 88%,
+    transparent
+  );
+}
+
+/* ==========================================================================
+   Surfaces & texture
+   ========================================================================== */
+
+.glass {
+  background: color-mix(in oklab, var(--forest-900) 62%, transparent);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid var(--border);
+}
+
+/* Film grain: keeps large flat greens from banding on wide gradients. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.032;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Torn-paper polaroid frame — lifted from the reference film's photo wall. */
+.polaroid {
+  background: var(--cashew-100);
+  padding: 0.5rem 0.5rem 0.5rem;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.35) inset,
+    0 18px 40px -18px rgb(0 0 0 / 0.75),
+    0 2px 8px -2px rgb(0 0 0 / 0.5);
+}
+
+.polaroid-caption {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--ink) 62%, transparent);
+  padding: 0.5rem 0.25rem 0.125rem;
+  line-height: 1.35;
+}
+
+/* LCD panel from the "PRECISION WEIGHING" console. */
+.lcd {
+  background: linear-gradient(180deg, #b9c9a6 0%, #a8bb95 55%, #9db08b 100%);
+  border: 2px solid #2a3327;
+  border-radius: 4px;
+  box-shadow:
+    inset 0 2px 10px rgb(0 0 0 / 0.35),
+    inset 0 -1px 0 rgb(255 255 255 / 0.4);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: #16210f;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.25);
+}
+
+/* ==========================================================================
+   Reveal primitives (driven by GSAP, but degrade to visible)
+   ========================================================================== */
+
+[data-reveal] {
+  will-change: transform, opacity;
+}
+
+.js-ready [data-reveal] {
+  opacity: 0;
+}
+
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+
+.split-line > span {
+  display: block;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Reduced motion — the whole experience must still read as a finished page
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
