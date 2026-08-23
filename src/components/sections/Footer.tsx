@@ -46,12 +46,14 @@ export function Footer() {
           {footer.columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
               <h2 className="type-eyebrow text-muted">{col.title}</h2>
-              <ul className="mt-5 space-y-2.5">
+              <ul className="mt-4 space-y-1">
                 {col.links.map((l) => (
                   <li key={l.href}>
+                    {/* Padded rather than tightly stacked: this is a real
+                        navigation list, so the rows need a touch target. */}
                     <a
                       href={l.href}
-                      className="text-[0.875rem] text-cream/78 underline-offset-4 transition-colors hover:text-gold-400 hover:underline"
+                      className="inline-block py-1.5 text-[0.875rem] text-cream/78 underline-offset-4 transition-colors hover:text-gold-400 hover:underline"
                     >
                       {l.label}
                     </a>

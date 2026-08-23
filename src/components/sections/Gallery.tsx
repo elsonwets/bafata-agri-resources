@@ -102,7 +102,8 @@ export function Gallery() {
                     onClick={() => setFilter(f.id)}
                     aria-pressed={active}
                     className={cn(
-                      "cursor-pointer rounded-full border px-4 py-2 text-[0.8125rem] transition-colors duration-200",
+                      // min-h-11 keeps the chip on the 44px touch minimum.
+                      "min-h-11 cursor-pointer rounded-full border px-4 py-2 text-[0.8125rem] transition-colors duration-200",
                       active
                         ? "border-gold-400 bg-gold-400 text-ink"
                         : "border-white/16 text-cream/72 hover:border-leaf-400/60 hover:text-cream",

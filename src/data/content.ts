@@ -4,6 +4,11 @@ import { site } from "./site";
  * All page copy. Written for two readers at once: a procurement manager
  * scanning for specs and terms, and an answer engine extracting a direct
  * response. Headings are phrased as the questions buyers actually type.
+ *
+ * NOTE ON HEADINGS: every `heading` array is one visual line per entry, and
+ * each line animates up behind its own mask. If a line is long enough to
+ * wrap, the mask reveals half a line and the effect breaks — so keep lines
+ * short, or check them against `.type-h2` in globals.css after editing.
  */
 
 export const seo = {
@@ -57,7 +62,7 @@ export const origin = {
 
 export const operation = {
   eyebrow: "Why work with us",
-  heading: ["You don't need to build", "the operation.", "We're already here."],
+  heading: ["You don't need", "to build this.", "We're already here."],
   body: "Buying raw cashew from a new origin usually means hiring an agent, chasing a warehouse, arguing about weights and learning a customs regime. We have spent our campaigns building that infrastructure so you can skip it.",
   capabilities: [
     { n: "01", title: "Sourcing", text: "We identify and vet sellers across the producing regions and negotiate on your behalf." },

@@ -86,7 +86,8 @@ export function MapBissau() {
                       onBlur={() => setHover(null)}
                       aria-describedby="gnb-map-title"
                       className={cn(
-                        "cursor-pointer rounded-full border px-3.5 py-2 text-[0.8125rem] transition-colors duration-200",
+                        // min-h-11 keeps the chip on the 44px touch minimum.
+                        "min-h-11 cursor-pointer rounded-full border px-3.5 py-2 text-[0.8125rem] transition-colors duration-200",
                         hover === r.id
                           ? "border-leaf-400 bg-leaf-400/15 text-leaf-200"
                           : "border-white/16 text-cream/75 hover:border-leaf-400/60",
