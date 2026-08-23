@@ -122,7 +122,7 @@ export function LogoTree3D({ className }: { className?: string }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(w, h);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.3;
     renderer.domElement.style.display = "block";
     host.appendChild(renderer.domElement);
 
@@ -132,17 +132,17 @@ export function LogoTree3D({ className }: { className?: string }) {
 
     /* --- lighting: warm key from upper left, cool forest fill ---------- */
 
-    scene.add(new THREE.AmbientLight(0x6f9c80, 0.55));
+    scene.add(new THREE.AmbientLight(0x6f9c80, 0.34));
 
-    const key = new THREE.DirectionalLight(0xfff0d0, 2.5);
+    const key = new THREE.DirectionalLight(0xfff4dd, 3.6);
     key.position.set(-3.2, 4.4, 5.2);
     scene.add(key);
 
-    const rim = new THREE.DirectionalLight(0x8ccfa0, 1.5);
+    const rim = new THREE.DirectionalLight(0x8ccfa0, 1.9);
     rim.position.set(4.2, 1.4, -3.6);
     scene.add(rim);
 
-    const bounce = new THREE.PointLight(0xc8963e, 12, 14, 2);
+    const bounce = new THREE.PointLight(0xc8963e, 18, 14, 2);
     bounce.position.set(1.4, -2.4, 2.6);
     scene.add(bounce);
 

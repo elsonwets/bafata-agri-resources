@@ -123,13 +123,23 @@ export function Hero() {
             // pushed below the fold by the mark.
             className="relative mx-auto aspect-square w-full max-w-[min(34rem,64vw)] lg:max-w-[min(34rem,78vw)]"
           >
-            {/* Warm pool of light behind the canopy. */}
+            {/* A shaded hollow in the canopy, then a warm pool of light in
+                it — the mark needs something darker than the forest behind
+                it or the silhouette dissolves into the background. */}
             <div
               aria-hidden
-              className="absolute inset-[8%] rounded-full opacity-70 blur-3xl"
+              className="absolute inset-[-6%] rounded-full opacity-85 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(circle at 42% 34%, rgba(200,150,62,0.30), rgba(37,113,72,0.20) 46%, transparent 72%)",
+                  "radial-gradient(circle at 50% 46%, rgba(4,18,12,0.92) 0%, rgba(4,18,12,0.62) 48%, transparent 74%)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-[8%] rounded-full opacity-80 blur-3xl"
+              style={{
+                background:
+                  "radial-gradient(circle at 42% 34%, rgba(200,150,62,0.34), rgba(37,113,72,0.22) 46%, transparent 72%)",
               }}
             />
             <LogoTree3D className="absolute inset-0" />
