@@ -1,19 +1,13 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
+  command = "pnpm build"
+  publish = "dist/client"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
-# The official Next.js runtime handles App Router, image optimisation and
-# route handlers. Netlify installs it automatically for Next projects, but
-# pinning it here keeps CI deterministic.
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-# Long-lived caching for the generated, content-addressed assets.
+# Content-addressed bundles never change under the same filename.
 [[headers]]
-  for = "/_next/static/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

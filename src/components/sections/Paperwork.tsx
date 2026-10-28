@@ -1,90 +1,34 @@
-"use client";
-
-import { FileText } from "lucide-react";
 import { paperwork } from "@/data/content";
 import { waLinks } from "@/data/site";
-import { SplitHeading } from "@/components/ui/SplitHeading";
-import { Reveal } from "@/components/ui/Reveal";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Bits";
+import { Action, Heading, WhatsAppIcon } from "@/components/ui";
 
-/**
- * The documentation section. Rendered as a stack of paper — each document a
- * cream card with a torn edge — because "we handle the paperwork" is an
- * abstract promise until you can see the file.
- */
 export function Paperwork() {
   return (
-    <section id="documents" className="section-y relative">
-      <div className="shell">
-        <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <Reveal>
-              <Eyebrow>{paperwork.eyebrow}</Eyebrow>
-            </Reveal>
+    <section id="documents" aria-labelledby="documents-title" className="defer section">
+      <div className="shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <Heading id="documents-title" className="max-w-[13ch]">
+            {paperwork.heading.join(" ")}
+          </Heading>
+          <p className="t-lead mt-7 max-w-[32rem]">{paperwork.body}</p>
+          <Action href={waLinks.documents} external variant="secondary" icon={<WhatsAppIcon />} className="mt-9">
+            Ask about a document
+          </Action>
+        </div>
 
-            <SplitHeading
-              as="h2"
-              lines={paperwork.heading}
-              accentLine={1}
-              className="type-h2 mt-6 text-cream opacity-0"
-            />
-
-            <Reveal>
-              <p className="type-lead mt-8 max-w-[50ch]">{paperwork.body}</p>
-            </Reveal>
-
-            <Reveal>
-              <p className="mt-6 max-w-[50ch] border-l-2 border-gold-400/50 pl-5 text-[0.875rem] leading-relaxed text-cashew-200/90">
-                {paperwork.note}
-              </p>
-            </Reveal>
-
-            <Reveal className="mt-8">
-              <Button
-                href={waLinks.documents}
-                external
-                variant="outline"
-                icon={<FileText size={16} strokeWidth={2.2} aria-hidden />}
-              >
-                Ask about your document set
-              </Button>
-            </Reveal>
-          </div>
-
-          {/* --- the file --- */}
-          <Reveal stagger={0.07} as="ul" className="grid gap-3 sm:grid-cols-2">
+        <div>
+          <ol className="grid gap-px overflow-hidden rounded-[24px] bg-line sm:grid-cols-2">
             {paperwork.docs.map((d, i) => (
-              <li
-                key={d.title}
-                className="group relative rounded-sm bg-cashew-100 p-5 transition-transform duration-500 ease-out hover:-translate-y-1"
-                style={{
-                  // A hand-stacked look: each sheet sits at its own tiny angle.
-                  transform: `rotate(${(i % 2 === 0 ? -1 : 1) * (0.35 + (i % 3) * 0.22)}deg)`,
-                }}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-[0.875rem] font-semibold text-ink">
-                    {d.title}
-                  </h3>
-                  <FileText
-                    size={15}
-                    aria-hidden
-                    className="mt-0.5 shrink-0 text-ink/35"
-                  />
-                </div>
-                <p className="mt-2 text-[0.75rem] leading-relaxed text-ink/62">
-                  {d.text}
+              <li key={d.title} className="bg-raised p-6 sm:p-7">
+                <p className="num text-[0.875rem] font-medium text-muted">
+                  {String(i + 1).padStart(2, "0")}
                 </p>
-                {/* Ruled lines suggesting the body of the document below. */}
-                <div aria-hidden className="mt-4 space-y-1.5">
-                  <span className="block h-px w-full bg-ink/10" />
-                  <span className="block h-px w-[86%] bg-ink/10" />
-                  <span className="block h-px w-[62%] bg-ink/10" />
-                </div>
+                <h3 className="mt-3 text-[1.0625rem] font-semibold tracking-[-0.015em]">{d.title}</h3>
+                <p className="mt-1.5 text-[0.9375rem] text-ink-soft">{d.text}</p>
               </li>
             ))}
-          </Reveal>
+          </ol>
+          <p className="mt-6 max-w-[60ch] text-[0.9375rem] text-muted">{paperwork.note}</p>
         </div>
       </div>
     </section>

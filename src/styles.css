@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "@fontsource-variable/hanken-grotesk";
+
+/* ==========================================================================
+   BAFATA AGRI RESOURCES — Design tokens
+   A light, mineral page. Limestone grey for the canvas, pure white for
+   raised surfaces, the logo's navy for every action, and the brown of a raw
+   cashew shell kept for the figures that describe the crop itself.
+   ========================================================================== */
+
+:root {
+  --canvas: #f3f4f0;
+  --raised: #ffffff;
+  --sunken: #e7e9e2;
+  --ink: #15192b;
+  --ink-soft: #3c4254;
+  --muted: #646a78;
+  --line: rgb(21 25 43 / 0.1);
+  --line-strong: rgb(21 25 43 / 0.18);
+
+  --navy: #1d2c6e;
+  --navy-deep: #101f52;
+  --navy-tint: #e4e8f5;
+  --shell: #84622f;
+  --shell-tint: #f1e9d9;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --max-w: 76rem;
+  --section-y: clamp(5.5rem, 11vw, 10rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-raised: var(--raised);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-tint: var(--navy-tint);
+  --color-shell: var(--shell);
+  --color-shell-tint: var(--shell-tint);
+
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --breakpoint-xs: 26rem;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  border-color: var(--line);
+}
+
+html {
+  background: var(--canvas);
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-tap-highlight-color: transparent;
+  interpolate-size: allow-keywords;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--navy);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   Type scale — one family, weight and tracking do the work
+   ========================================================================== */
+
+.t-hero {
+  font-size: clamp(2.75rem, 8.4vw, 7.5rem);
+  font-weight: 640;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.t-h2 {
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  font-weight: 620;
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  text-wrap: balance;
+}
+
+.t-h3 {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+}
+
+.t-lead {
+  font-size: clamp(1.125rem, 1.7vw, 1.375rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.t-statement {
+  font-size: clamp(1.375rem, 2.5vw, 2.125rem);
+  font-weight: 560;
+  line-height: 1.24;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+/* Lower-contrast continuation inside a statement — Apple's two-tone
+   paragraph, used for the second sentence, never for a single word. */
+.t-statement .quiet {
+  color: color-mix(in oklab, var(--ink) 42%, var(--canvas));
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "ss01";
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* ==========================================================================
+   The one orchestrated motion: the hero photograph opens from an inset,
+   rounded frame to the full width of the window as the page scrolls.
+   Pure CSS scroll-driven animation — no JavaScript, no layout thrash —
+   and browsers without support simply show the framed photo.
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-frame {
+      animation: hero-open linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 48%;
+    }
+
+    .hero-frame img {
+      animation: hero-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 48%;
+    }
+  }
+}
+
+@keyframes hero-open {
+  from {
+    clip-path: inset(0 var(--hero-inset) round 28px);
+  }
+  to {
+    clip-path: inset(0 0 round 0);
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-frame {
+  --hero-inset: max(var(--gutter), calc((100vw - var(--max-w)) / 2 + var(--gutter)));
+  clip-path: inset(0 var(--hero-inset) round 28px);
+}
+
+/* ==========================================================================
+   FAQ disclosure — native <details>, animated open with interpolate-size
+   ========================================================================== */
+
+details.faq::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 0.45s var(--ease-out),
+    content-visibility 0.45s allow-discrete;
+}
+
+details.faq[open]::details-content {
+  block-size: auto;
+}
+
+details.faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq .faq-icon {
+  transition: transform 0.4s var(--ease-out);
+}
+
+details.faq[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   Horizontal rail (gallery) — native scroll snapping, no carousel library
+   ========================================================================== */
+
+.rail {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail > * {
+  scroll-snap-align: start;
+}
+
+/* Below-the-fold sections skip layout and paint until they approach the
+   viewport — the browser does the lazy work for us. */
+.defer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}

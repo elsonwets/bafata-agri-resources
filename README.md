@@ -4,25 +4,28 @@ Marketing site for a raw cashew nut (RCN) exporter based in Bissau,
 Guinea-Bissau. Built to turn an international buyer's first visit into a
 WhatsApp conversation about the next campaign.
 
-**Stack** — Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · GSAP
-ScrollTrigger · Lenis · Three.js · Framer Motion · deployed on Netlify.
+**Stack** — TanStack Start (Vite, React 19) · TypeScript · Tailwind CSS v4 ·
+deployed on Netlify. The page is prerendered to static HTML at build time and
+ships no animation, 3D or smooth-scroll library.
 
 ---
 
 ## Quick start
 
+The project uses **pnpm** only — do not add a `package-lock.json`.
+
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 | Script | What it does |
 | --- | --- |
-| `npm run dev` | Development server on http://localhost:3000 |
-| `npm run build` | Production build |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint |
-| `npm run build:map` | Regenerates the world and Guinea-Bissau map data |
+| `pnpm dev` | Development server on http://localhost:3000 |
+| `pnpm build` | Production build, prerenders `/` to `dist/client/index.html` |
+| `pnpm start` | Serves the production build locally |
+| `pnpm typecheck` | `tsc --noEmit` |
+| `pnpm build:map` | Regenerates the world and Guinea-Bissau map data |
 
 ---
 
@@ -64,28 +67,8 @@ and one of the FAQ answers. Change the year and month in one place.
 embossed navy seal — tree of life, laurel wreath, arc of stars, Sri Yantra
 medallion with sun rays, and cashew apples in the crown.
 
-It is generated procedurally so it can be regenerated deterministically, and
-it is authored as **filled paths only** so Three.js can extrude it into real
-geometry for the hero.
-
-### Replacing it with the original artwork
-
-Drop the client's own file in as `public/brand/logo-mark.svg`. For the 3D hero
-to keep working, the SVG needs:
-
-1. **Filled paths only** — no `stroke`-based artwork (`SVGLoader` extrudes
-   fills). Run it through "outline stroke" in Illustrator or Figma first.
-2. **Group ids** matching the ones the scene styles per-material:
-   `wreath`, `stars`, `canopy`, `tree`, `rays`, `fruit`, `yantra`.
-   Anything in an unrecognised group falls back to the `tree` material.
-3. `fill-rule="evenodd"` if the mark has knockouts (the yantra does).
-
-If the artwork is raster-only (PNG/JPG), the 3D hero cannot use it — swap
-`LogoTree3D` for a static `<Image>` in `src/components/sections/Hero.tsx`, or
-have the mark vectorised first.
-
-`src/components/brand/Glyph.tsx` is a separate, reduced mark used in the
-header and footer, because the full seal turns to mud below about 48px.
+It is used as-is in the header and footer and as the favicon. To replace it,
+drop the client's own file in as `public/brand/logo-mark.svg`.
 
 ---
 
@@ -115,36 +98,37 @@ the browser:
 - **`src/data/guinea-bissau.ts`** — the nine administrative regions of
   Guinea-Bissau as SVG paths, from `scripts/data/gnb-adm1.geojson`.
 
-Regenerate both with `npm run build:map`.
+Regenerate both with `pnpm build:map`.
 
 Boundary data is **geoBoundaries / OpenStreetMap, ODbL v1.0**. The attribution
 rendered under the map on the site is a licence requirement — do not remove it.
 
 ---
 
-## Motion
+## Design and motion
 
-- **Lenis** drives the scroll and **GSAP's ticker drives Lenis**, so pinned
-  sections stay in lockstep with the smoothed position.
-- Two sections pin: `Journey` (horizontal track) and `QualityWall`. Both drop
-  the pin below their breakpoint in favour of native scrolling — pinning
-  content that does not fit a small viewport only hides it.
-- Every animation respects `prefers-reduced-motion`; the page must read as a
-  finished document with motion disabled.
-- The forest background is a single fullscreen fragment shader — one draw
-  call, paused when the tab is hidden.
+- Light, mineral palette defined as tokens at the top of `src/styles.css`:
+  limestone canvas, white surfaces, the logo's navy for every action and the
+  brown of a raw cashew shell for crop figures.
+- One typeface, Hanken Grotesk (self-hosted via Fontsource).
+- One orchestrated motion: the hero photograph opens from an inset rounded
+  frame to full width as you scroll — a CSS scroll-driven animation, no
+  JavaScript. Browsers without support show the framed photo.
+- The Journey section keeps its photo pinned (CSS `position: sticky`) and
+  swaps it as each stage scrolls past (one `IntersectionObserver`).
+- Everything respects `prefers-reduced-motion`.
 
 ---
 
 ## Deployment (Netlify)
 
-`netlify.toml` is committed with the build command, the Next.js runtime plugin
-and cache headers.
+`netlify.toml` is committed with the build command and cache headers;
+`@netlify/vite-plugin-tanstack-start` configures the build output.
 
-1. Connect the repository in Netlify — it detects Next.js automatically.
-2. Set **`NEXT_PUBLIC_SITE_URL`** (or update `site.url` in
-   `src/data/site.ts`) to the production domain, so canonical URLs, Open
-   Graph tags and the sitemap point at the real host.
+1. Connect the repository in Netlify.
+2. Update `site.url` in `src/data/site.ts` (and `public/robots.txt`,
+   `public/sitemap.xml`) to the production domain, so canonical URLs and Open
+   Graph tags point at the real host.
 3. Deploy.
 
 ---

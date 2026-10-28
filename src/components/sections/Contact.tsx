@@ -1,14 +1,8 @@
-"use client";
-
-import { useState } from "react";
-import { MessageCircle, Send } from "lucide-react";
+import { useState, type FormEvent } from "react";
 import { cta } from "@/data/content";
 import { site, wa, waLinks } from "@/data/site";
-import { SplitHeading } from "@/components/ui/SplitHeading";
-import { Reveal } from "@/components/ui/Reveal";
-import { Photo } from "@/components/ui/Photo";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Bits";
+import { Action, CheckIcon, WhatsAppIcon } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 const INCOTERMS = ["FOB Bissau", "CFR", "CIF", "FAS", "Not sure yet"];
 
@@ -18,18 +12,19 @@ type Field = {
   required?: boolean;
   options?: string[];
   full?: boolean;
-  hint?: string;
+  placeholder?: string;
+  autoComplete?: string;
 };
 
 const FIELDS: Field[] = [
-  { name: "name", required: true, hint: "So we know who we're replying to" },
-  { name: "company", required: true },
-  { name: "email", type: "email", required: true },
-  { name: "country" },
-  { name: "volume", hint: "In metric tonnes, even approximate" },
-  { name: "port" },
+  { name: "name", required: true, autoComplete: "name" },
+  { name: "company", required: true, autoComplete: "organization" },
+  { name: "email", type: "email", required: true, autoComplete: "email" },
+  { name: "country", autoComplete: "country-name" },
+  { name: "volume", type: "text", placeholder: "e.g. 500" },
+  { name: "port", placeholder: "e.g. Tuticorin" },
   { name: "incoterm", options: INCOTERMS },
-  { name: "window", hint: "e.g. March–April 2027" },
+  { name: "window", placeholder: "e.g. March–April 2027" },
   { name: "message", full: true },
 ];
 
@@ -42,9 +37,9 @@ const FIELDS: Field[] = [
  * what they sent. Validation is the browser's; there is nothing to fake.
  */
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState<string | null>(null);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
 
@@ -71,181 +66,122 @@ export function Contact() {
       .filter((l) => l !== null)
       .join("\n");
 
-    window.open(wa(body), "_blank", "noopener,noreferrer");
-    setSent(true);
+    const url = wa(body);
+    window.open(url, "_blank", "noopener,noreferrer");
+    setSent(url);
   };
 
+  const field =
+    "w-full rounded-[14px] bg-canvas px-4 py-3.5 text-[1rem] text-ink outline-none ring-1 ring-transparent transition-shadow placeholder:text-muted/70 focus:bg-raised focus:ring-2 focus:ring-navy";
+
   return (
-    <section id="contact" className="section-y relative">
-      <div className="shell">
-        <div className="relative overflow-hidden rounded-lg border border-white/12">
-          {/* Backdrop: the quay at Bissau, heavily dimmed. */}
-          <Photo
-            slug="port-dual-cranes"
-            sizes="100vw"
-            className="absolute inset-0 -z-10"
-            imgClassName="opacity-25"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 bg-gradient-to-br from-forest-950 via-forest-950/94 to-forest-900/88"
-          />
+    <section id="contact" aria-labelledby="contact-title" className="section">
+      <div className="shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <h2 id="contact-title" className="t-h2 max-w-[15ch]">
+            {cta.heading.join(" ")}
+          </h2>
+          <p className="t-lead mt-7 max-w-[32rem]">{cta.body}</p>
 
-          <div className="grid gap-12 p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:p-14">
-            {/* --- the pitch --- */}
+          <dl className="mt-10 grid gap-6 text-[1rem]">
             <div>
-              <Reveal>
-                <Eyebrow>{cta.eyebrow}</Eyebrow>
-              </Reveal>
-
-              <SplitHeading
-                as="h2"
-                lines={cta.heading}
-                accentLine={1}
-                className="type-h2 mt-5 text-cream opacity-0"
-              />
-
-              <Reveal>
-                <p className="type-lead mt-6 max-w-[46ch]">{cta.body}</p>
-              </Reveal>
-
-              <Reveal className="mt-9">
-                <Button
-                  href={waLinks.campaign}
-                  external
-                  variant="gold"
-                  icon={<MessageCircle size={16} strokeWidth={2.2} aria-hidden />}
-                >
-                  {cta.secondary}
-                </Button>
-                <p className="mt-4 font-mono text-[0.75rem] tracking-[0.1em] text-muted">
+              <dt className="text-muted">WhatsApp and phone</dt>
+              <dd className="mt-1">
+                <a href={waLinks.general} target="_blank" rel="noopener noreferrer" className="num text-[1.25rem] font-semibold tracking-[-0.02em] text-navy hover:underline">
                   {site.phoneDisplay}
-                </p>
-              </Reveal>
-
-              <Reveal className="mt-10 border-t border-white/12 pt-6">
-                <p className="type-eyebrow text-muted">Campaign timing</p>
-                <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-cashew-200">
-                  The {site.campaign.year} harvest opens in{" "}
-                  <strong className="font-semibold text-gold-400">
-                    {site.campaign.opensMonth} {site.campaign.year}
-                  </strong>
-                  . Allocation, specification and freight are agreed before the
-                  origin gets busy — not during.
-                </p>
-              </Reveal>
+                </a>
+              </dd>
             </div>
+            <div>
+              <dt className="text-muted">Email</dt>
+              <dd className="mt-1">
+                <a href={`mailto:${site.email}`} className="text-[1.25rem] font-semibold tracking-[-0.02em] text-navy hover:underline">
+                  {site.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-muted">Office</dt>
+              <dd className="mt-1 font-medium">Bissau, Guinea-Bissau</dd>
+            </div>
+          </dl>
+        </div>
 
-            {/* --- the form --- */}
-            <Reveal from="scale">
-              <div className="glass rounded-lg p-5 sm:p-7">
-                <h3 className="type-h3 text-cream">{cta.form.title}</h3>
-                <p className="mt-2 text-[0.8125rem] text-muted">
-                  {cta.form.subtitle}
-                </p>
-
-                <form onSubmit={onSubmit} className="mt-7 grid gap-4 sm:grid-cols-2">
-                  {FIELDS.map((f) => {
-                    const label = cta.form.fields[f.name];
-                    const id = `bf-${f.name}`;
-                    return (
-                      <div
-                        key={f.name}
-                        className={f.full ? "sm:col-span-2" : undefined}
-                      >
-                        <label
-                          htmlFor={id}
-                          className="block text-[0.75rem] font-medium text-cream/85"
-                        >
-                          {label}
-                          {f.required ? (
-                            <span aria-hidden className="ml-1 text-gold-400">
-                              *
-                            </span>
-                          ) : null}
-                        </label>
-
-                        {f.options ? (
-                          <select
-                            id={id}
-                            name={f.name}
-                            defaultValue=""
-                            className="mt-1.5 h-12 w-full rounded-md border border-white/16 bg-forest-950/70 px-3 text-[0.875rem] text-cream transition-colors focus:border-leaf-400"
-                          >
-                            <option value="" disabled>
-                              Select…
-                            </option>
-                            {f.options.map((o) => (
-                              <option key={o} value={o}>
-                                {o}
-                              </option>
-                            ))}
-                          </select>
-                        ) : f.full ? (
-                          <textarea
-                            id={id}
-                            name={f.name}
-                            rows={3}
-                            className="mt-1.5 w-full resize-y rounded-md border border-white/16 bg-forest-950/70 px-3 py-2.5 text-[0.875rem] text-cream transition-colors placeholder:text-muted/50 focus:border-leaf-400"
-                          />
-                        ) : (
-                          <input
-                            id={id}
-                            name={f.name}
-                            type={f.type ?? "text"}
-                            required={f.required}
-                            autoComplete={
-                              f.name === "email"
-                                ? "email"
-                                : f.name === "name"
-                                  ? "name"
-                                  : f.name === "company"
-                                    ? "organization"
-                                    : f.name === "country"
-                                      ? "country-name"
-                                      : "off"
-                            }
-                            inputMode={f.name === "volume" ? "numeric" : undefined}
-                            aria-describedby={f.hint ? `${id}-hint` : undefined}
-                            className="mt-1.5 h-12 w-full rounded-md border border-white/16 bg-forest-950/70 px-3 text-[0.875rem] text-cream transition-colors placeholder:text-muted/50 focus:border-leaf-400"
-                          />
-                        )}
-
-                        {f.hint ? (
-                          <p
-                            id={`${id}-hint`}
-                            className="mt-1.5 text-[0.6875rem] text-muted/80"
-                          >
-                            {f.hint}
-                          </p>
-                        ) : null}
-                      </div>
-                    );
-                  })}
-
-                  <div className="sm:col-span-2">
-                    <Button
-                      type="submit"
-                      variant="gold"
-                      className="w-full"
-                      icon={<Send size={15} strokeWidth={2.2} aria-hidden />}
-                    >
-                      {cta.form.submit}
-                    </Button>
-
-                    <p
-                      className="mt-3 text-[0.6875rem] leading-relaxed text-muted"
-                      role="status"
-                    >
-                      {sent
-                        ? "WhatsApp should have opened with your request. If it did not, tap the WhatsApp button above and paste your details."
-                        : cta.form.note}
-                    </p>
-                  </div>
-                </form>
+        <div className="rounded-[28px] bg-raised p-6 shadow-[0_1px_2px_rgb(21_25_43/0.04),0_24px_60px_-28px_rgb(21_25_43/0.25)] sm:p-10">
+          {sent ? (
+            <div role="status" className="flex min-h-[28rem] flex-col items-start justify-center">
+              <span className="grid size-12 place-items-center rounded-full bg-navy-tint text-navy">
+                <CheckIcon />
+              </span>
+              <h3 className="t-h3 mt-6">Your request is ready in WhatsApp</h3>
+              <p className="mt-3 max-w-[34ch] text-ink-soft">
+                Press send in WhatsApp and it reaches us in Bissau. If the app didn't open, message us directly.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Action href={sent} external icon={<WhatsAppIcon />}>
+                  Open WhatsApp
+                </Action>
+                <button
+                  type="button"
+                  onClick={() => setSent(null)}
+                  className="min-h-12 rounded-full px-5 font-medium text-navy hover:bg-navy-tint"
+                >
+                  Edit my request
+                </button>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} aria-labelledby="form-title">
+              <h3 id="form-title" className="t-h3">{cta.form.title}</h3>
+              <p className="mt-1.5 text-ink-soft">{cta.form.subtitle}</p>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {FIELDS.map((f) => {
+                  const id = `f-${f.name}`;
+                  const label = cta.form.fields[f.name];
+                  return (
+                    <div key={f.name} className={cn("flex flex-col gap-2", f.full && "sm:col-span-2")}>
+                      <label htmlFor={id} className="text-[0.9375rem] font-medium">
+                        {label}
+                        {f.required ? null : <span className="font-normal text-muted"> (optional)</span>}
+                      </label>
+                      {f.options ? (
+                        <select id={id} name={f.name} defaultValue="" className={cn(field, "appearance-none")}>
+                          <option value="" disabled>
+                            Choose
+                          </option>
+                          {f.options.map((o) => (
+                            <option key={o}>{o}</option>
+                          ))}
+                        </select>
+                      ) : f.full ? (
+                        <textarea id={id} name={f.name} rows={4} className={cn(field, "resize-y")} />
+                      ) : (
+                        <input
+                          id={id}
+                          name={f.name}
+                          type={f.type ?? "text"}
+                          required={f.required}
+                          placeholder={f.placeholder}
+                          autoComplete={f.autoComplete}
+                          className={field}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <button
+                type="submit"
+                className="mt-8 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-navy px-6 text-[1.0625rem] font-medium text-white transition-[background-color,transform] hover:bg-navy-deep active:scale-[0.98]"
+              >
+                <WhatsAppIcon />
+                {cta.form.submit}
+              </button>
+              <p className="mt-4 text-center text-[0.875rem] text-muted">{cta.form.note}</p>
+            </form>
+          )}
         </div>
       </div>
     </section>

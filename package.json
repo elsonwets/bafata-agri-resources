@@ -1,41 +1,34 @@
 {
   "name": "bafata-agri-resources",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
+  "description": "Raw cashew nut exports from Guinea-Bissau — Bafata Agri Resources, SARL",
+  "packageManager": "pnpm@11.6.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "build:map": "node scripts/build-map.mjs && node scripts/build-country.mjs",
-    "typecheck": "tsc --noEmit"
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "start": "vite preview --port 3000",
+    "typecheck": "tsc --noEmit",
+    "build:map": "node scripts/build-map.mjs && node scripts/build-country.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.8",
-    "@react-three/fiber": "^9.7.0",
-    "clsx": "^2.1.1",
-    "dotted-map": "^3.1.0",
-    "gsap": "^3.15.0",
-    "lenis": "^1.3.26",
-    "lucide-react": "^1.33.0",
-    "motion": "^13.1.1",
-    "next": "16.3.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tailwind-merge": "^3.6.0",
-    "three": "^0.185.1"
+    "@fontsource-variable/hanken-grotesk": "^5.3.0",
+    "@tanstack/react-router": "^1.170.46",
+    "@tanstack/react-start": "^1.169.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.13",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@netlify/vite-plugin-tanstack-start": "^1.3.19",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.185.4",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "description": "Raw cashew nut exports from Guinea-Bissau — Bafata Agri Resources, SARL"
+    "@vitejs/plugin-react": "^6.1.2",
+    "dotted-map": "^3.1.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5"
+  }
 }

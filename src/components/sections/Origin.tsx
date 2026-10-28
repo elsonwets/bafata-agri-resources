@@ -1,100 +1,105 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { origin } from "@/data/content";
-import { SplitHeading } from "@/components/ui/SplitHeading";
-import { Reveal } from "@/components/ui/Reveal";
-import { Photo } from "@/components/ui/Photo";
-import { Eyebrow, Stat } from "@/components/ui/Bits";
+import { GNB_VIEWBOX, gnbPins, gnbRegions } from "@/data/guinea-bissau";
+import { Heading } from "@/components/ui";
+
+const bissau = gnbPins.find((p) => p.id === "bissau")!;
+const sourcing = gnbRegions.filter((r) => r.sourcing);
 
 export function Origin() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      // The photograph drifts slower than the page — classic depth parallax.
-      gsap.fromTo(
-        ".origin-photo img",
-        { yPercent: -9 },
-        {
-          yPercent: 9,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".origin-photo",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.7,
-          },
-        },
-      );
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={ref} id="origin" className="section-y relative">
+    <section id="origin" aria-labelledby="origin-title" className="section">
       <div className="shell">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          {/* --- copy --- */}
-          <div>
-            <Reveal>
-              <Eyebrow>{origin.eyebrow}</Eyebrow>
-            </Reveal>
+        <Heading id="origin-title">{origin.heading.join(" ")}</Heading>
 
-            <SplitHeading
-              as="h2"
-              lines={origin.heading}
-              accentLine={1}
-              className="type-h2 mt-6 text-cream opacity-0"
-            />
+        <p className="t-statement mt-10 max-w-[46ch] lg:mt-14">
+          {origin.body[0]} <span className="quiet">{origin.body[1]}</span>
+        </p>
 
-            <Reveal stagger={0.12} className="mt-8 space-y-5">
-              {origin.body.map((p, i) => (
-                <p key={i} className="type-lead max-w-[54ch]">
-                  {p}
-                </p>
+        <div className="mt-16 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+          <figure className="rounded-[28px] bg-raised p-5 sm:p-8">
+            <svg
+              viewBox={`0 0 ${GNB_VIEWBOX.w} ${GNB_VIEWBOX.h}`}
+              className="w-full"
+              role="img"
+              aria-labelledby="gnb-title gnb-desc"
+            >
+              <title id="gnb-title">Map of Guinea-Bissau showing our raw cashew sourcing regions</title>
+              <desc id="gnb-desc">
+                Bissau is marked on the Atlantic coast. The highlighted regions are{" "}
+                {sourcing.map((r) => r.name).join(", ")}.
+              </desc>
+
+              {gnbRegions.map((r) => (
+                <path
+                  key={r.id}
+                  d={r.d}
+                  fill={r.sourcing ? "var(--shell-tint)" : "var(--sunken)"}
+                  stroke={r.sourcing ? "var(--shell)" : "var(--canvas)"}
+                  strokeOpacity={r.sourcing ? 0.45 : 1}
+                  strokeWidth={2}
+                  strokeLinejoin="round"
+                />
               ))}
-            </Reveal>
-          </div>
 
-          {/* --- photograph --- */}
-          <Reveal from="scale" className="origin-photo relative">
-            <Photo
-              slug="warehouse-bulk-store"
-              sizes="(max-width: 1024px) 92vw, 46vw"
-              className="aspect-[4/5] rounded-sm"
-              imgClassName="scale-115"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-950/70 via-transparent to-transparent"
-            />
-            <figcaption className="absolute bottom-5 left-5 right-5 font-mono text-[0.6875rem] leading-relaxed tracking-[0.06em] text-cashew-200/90 uppercase">
-              Bissau warehouse · lot consolidation
+              {sourcing.map((r) => (
+                <text
+                  key={r.id}
+                  x={r.cx}
+                  y={r.cy}
+                  textAnchor="middle"
+                  fontSize={22}
+                  fontWeight={600}
+                  fill="var(--shell)"
+                >
+                  {r.name}
+                </text>
+              ))}
+
+              <circle cx={bissau.x} cy={bissau.y} r={22} fill="var(--navy)" opacity={0.14} />
+              <circle cx={bissau.x} cy={bissau.y} r={9} fill="var(--navy)" stroke="#fff" strokeWidth={3} />
+              <text
+                x={bissau.x}
+                y={bissau.y + 46}
+                textAnchor="middle"
+                fontSize={22}
+                fontWeight={650}
+                fill="var(--navy)"
+              >
+                Bissau · port
+              </text>
+            </svg>
+            <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[0.8125rem] text-muted">
+              <span className="flex items-center gap-2">
+                <span className="size-2.5 rounded-[3px] bg-shell-tint ring-1 ring-shell/40" aria-hidden />
+                Regions we buy in
+              </span>
+              <span>
+                Boundaries:{" "}
+                <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                  geoBoundaries
+                </a>
+                ,{" "}
+                <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                  © OpenStreetMap contributors
+                </a>{" "}
+                (ODbL)
+              </span>
             </figcaption>
-          </Reveal>
-        </div>
+          </figure>
 
-        {/* --- the numbers buyers actually ask for --- */}
-        <Reveal
-          stagger={0.09}
-          className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-        >
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] bg-line">
           {origin.stats.map((s) => (
-            <Stat key={s.label} value={s.value} label={s.label} note={s.note} />
+            <div key={s.label} className="flex flex-col bg-raised p-5 sm:p-7">
+              <dt className="text-[0.9375rem] text-muted">{s.label}</dt>
+              <dd className="num mt-2 text-[clamp(1.5rem,2.6vw,2.25rem)] leading-none font-semibold tracking-[-0.035em] text-shell">
+                {s.value}
+              </dd>
+              <dd className="mt-auto pt-4 text-[0.875rem] leading-snug text-ink-soft">{s.note}</dd>
+            </div>
           ))}
-        </Reveal>
-
-        <Reveal>
-          <p className="mt-10 max-w-[68ch] text-[0.8125rem] leading-relaxed text-muted/80">
-            {origin.disclaimer}
-          </p>
-        </Reveal>
+          </dl>
+        </div>
+        <p className="mt-10 max-w-[60ch] text-[0.875rem] text-muted">{origin.disclaimer}</p>
       </div>
     </section>
   );

@@ -5,10 +5,8 @@ import { site } from "./site";
  * scanning for specs and terms, and an answer engine extracting a direct
  * response. Headings are phrased as the questions buyers actually type.
  *
- * NOTE ON HEADINGS: every `heading` array is one visual line per entry, and
- * each line animates up behind its own mask. If a line is long enough to
- * wrap, the mask reveals half a line and the effect breaks — so keep lines
- * short, or check them against `.type-h2` in globals.css after editing.
+ * Headings are stored as arrays of phrases and joined into one line of text
+ * by the components; `text-wrap: balance` handles the breaks.
  */
 
 export const seo = {
