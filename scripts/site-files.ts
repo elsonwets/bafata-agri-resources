@@ -9,6 +9,8 @@ import { GNB_VIEWBOX, gnbPins, gnbRegions } from "../src/data/guinea-bissau.ts";
  *
  * - /llms.txt — a plain-text brief of the company for AI assistants
  *   (https://llmstxt.org).
+ * - /.well-known/ard.json — an Agentic Resource Discovery manifest
+ *   (https://agenticresourcediscovery.org/spec/) pointing agents to llms.txt.
  * - /map/guinea-bissau.svg — the sourcing-region map. Shipped as an image
  *   rather than inline SVG so 60 kB of path data stays out of the HTML, the
  *   JavaScript bundle and React hydration.
@@ -94,8 +96,32 @@ function gnbMap() {
   ].join("\n");
 }
 
+function ard() {
+  const manifest = {
+    entries: [
+      {
+        identifier: "urn:air:bafata-agri.com:company:brief",
+        displayName: `${site.shortName} — company brief`,
+        type: "text/plain",
+        url: `${site.url}/llms.txt`,
+        description: hero.lead,
+        tags: ["raw cashew nuts", "RCN", "Guinea-Bissau", "exporter", "Port of Bissau"],
+        representativeQueries: [
+          "Who exports raw cashew nuts from Guinea-Bissau?",
+          "How do I buy raw cashew nuts (RCN) from Guinea-Bissau?",
+          "Which export documents come with Guinea-Bissau cashew shipments?",
+          `When does the ${site.campaign.year} Guinea-Bissau cashew campaign open?`,
+        ],
+        updatedAt: `${site.updated}T00:00:00Z`,
+      },
+    ],
+  };
+  return JSON.stringify(manifest, null, 2);
+}
+
 const FILES: Record<string, { type: string; render: () => string }> = {
   "llms.txt": { type: "text/plain; charset=utf-8", render: llms },
+  ".well-known/ard.json": { type: "application/json", render: ard },
   "map/guinea-bissau.svg": { type: "image/svg+xml", render: gnbMap },
 };
 

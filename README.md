@@ -154,14 +154,21 @@ Google Business Profile, directory listings) to `site.sameAs`.
 
 ## Deployment (Netlify)
 
-`netlify.toml` is committed with the build command and cache headers;
-`@netlify/vite-plugin-tanstack-start` configures the build output.
+The site is fully prerendered, so it deploys as **plain static files** from
+`dist/client` — no server function. Unknown URLs get `public/404.html`.
 
-1. Connect the repository in Netlify.
-2. The production domain is `bafata-agri.com`; if it changes, update `site.url` in `src/data/site.ts` (and `public/robots.txt`,
-   `public/sitemap.xml`) to the production domain, so canonical URLs and Open
-   Graph tags point at the real host.
-3. Deploy.
+```bash
+pnpm build
+npx netlify-cli deploy --no-build --dir dist/client          # preview URL
+npx netlify-cli deploy --no-build --dir dist/client --prod   # bafata-agri.com
+```
+
+`--no-build` matters: the Netlify site still has the Next.js runtime plugin
+enabled in its UI settings from the previous site, and a Netlify-side build
+tries to install it. For Git-triggered builds, remove that plugin in
+Site configuration → Build & deploy, set the production branch to the one
+holding this code, and keep `netlify.toml` (pnpm build, publish
+`dist/client`).
 
 ---
 
