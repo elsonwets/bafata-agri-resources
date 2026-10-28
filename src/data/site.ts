@@ -23,6 +23,10 @@ export const site = {
   whatsapp: "https://wa.me/245955903406",
   email: "contact@bafata-agri.com",
 
+  /** Regions we buy raw cashew in. Keep in step with SOURCING in
+   *  scripts/build-country.mjs, which highlights them on the map. */
+  sourcingRegions: ["Bafatá", "Gabú", "Oio", "Quinara", "Cacheu"],
+
   /** Languages the team answers in — shown to buyers and in structured data. */
   languages: ["English", "French", "Portuguese"],
 

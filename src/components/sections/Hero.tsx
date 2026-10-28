@@ -37,6 +37,7 @@ export function Hero() {
         <Photo
           slug="port-crane-quay"
           priority
+          md
           sizes="100vw"
           className="aspect-[4/5] w-full sm:aspect-[16/9] lg:aspect-[2.1/1]"
         />

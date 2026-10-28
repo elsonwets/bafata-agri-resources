@@ -1,9 +1,6 @@
 import { markets } from "@/data/content";
-import { gnbRegions } from "@/data/guinea-bissau";
 import { site } from "@/data/site";
 import { Heading } from "@/components/ui";
-
-const regions = gnbRegions.filter((r) => r.sourcing).map((r) => r.name);
 
 /**
  * The company in one table. Buyers scan it to qualify a supplier; answer
@@ -14,7 +11,7 @@ const FACTS: Array<{ k: string; v: string }> = [
   { k: "Company", v: site.legalName },
   { k: "Activity", v: "Raw cashew nut (RCN) sourcing and export" },
   { k: "Based in", v: `${site.city}, ${site.country}` },
-  { k: "Sourcing regions", v: regions.join(", ") },
+  { k: "Sourcing regions", v: site.sourcingRegions.join(", ") },
   { k: "Export port", v: "Port of Bissau" },
   { k: "Campaign", v: `February to June. The ${site.campaign.year} campaign opens in ${site.campaign.opensMonth}` },
   { k: "Incoterms", v: markets.incoterms.join(", ") },

@@ -124,7 +124,6 @@ body {
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--ink-soft);
-  text-wrap: pretty;
 }
 
 .t-statement {
@@ -132,13 +131,13 @@ body {
   font-weight: 560;
   line-height: 1.24;
   letter-spacing: -0.03em;
-  text-wrap: pretty;
 }
 
 /* Lower-contrast continuation inside a statement — Apple's two-tone
-   paragraph, used for the second sentence, never for a single word. */
+   paragraph, used for the second sentence, never for a single word. Kept
+   at the muted text colour so it still clears WCAG AA (4.5:1). */
 .t-statement .quiet {
-  color: color-mix(in oklab, var(--ink) 42%, var(--canvas));
+  color: var(--muted);
 }
 
 .num {

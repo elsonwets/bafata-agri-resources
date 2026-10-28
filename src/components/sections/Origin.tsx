@@ -1,9 +1,6 @@
 import { origin } from "@/data/content";
-import { GNB_VIEWBOX, gnbPins, gnbRegions } from "@/data/guinea-bissau";
+import { site } from "@/data/site";
 import { Heading } from "@/components/ui";
-
-const bissau = gnbPins.find((p) => p.id === "bissau")!;
-const sourcing = gnbRegions.filter((r) => r.sourcing);
 
 export function Origin() {
   return (
@@ -17,57 +14,16 @@ export function Origin() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
           <figure className="rounded-[28px] bg-raised p-5 sm:p-8">
-            <svg
-              viewBox={`0 0 ${GNB_VIEWBOX.w} ${GNB_VIEWBOX.h}`}
-              className="w-full"
-              role="img"
-              aria-labelledby="gnb-title gnb-desc"
-            >
-              <title id="gnb-title">Map of Guinea-Bissau showing our raw cashew sourcing regions</title>
-              <desc id="gnb-desc">
-                Bissau is marked on the Atlantic coast. The highlighted regions are{" "}
-                {sourcing.map((r) => r.name).join(", ")}.
-              </desc>
-
-              {gnbRegions.map((r) => (
-                <path
-                  key={r.id}
-                  d={r.d}
-                  fill={r.sourcing ? "var(--shell-tint)" : "var(--sunken)"}
-                  stroke={r.sourcing ? "var(--shell)" : "var(--canvas)"}
-                  strokeOpacity={r.sourcing ? 0.45 : 1}
-                  strokeWidth={2}
-                  strokeLinejoin="round"
-                />
-              ))}
-
-              {sourcing.map((r) => (
-                <text
-                  key={r.id}
-                  x={r.cx}
-                  y={r.cy}
-                  textAnchor="middle"
-                  fontSize={22}
-                  fontWeight={600}
-                  fill="var(--shell)"
-                >
-                  {r.name}
-                </text>
-              ))}
-
-              <circle cx={bissau.x} cy={bissau.y} r={22} fill="var(--navy)" opacity={0.14} />
-              <circle cx={bissau.x} cy={bissau.y} r={9} fill="var(--navy)" stroke="#fff" strokeWidth={3} />
-              <text
-                x={bissau.x}
-                y={bissau.y + 46}
-                textAnchor="middle"
-                fontSize={22}
-                fontWeight={650}
-                fill="var(--navy)"
-              >
-                Bissau · port
-              </text>
-            </svg>
+            {/* Generated at build time by scripts/site-files.ts. */}
+            <img
+              src="/map/guinea-bissau.svg"
+              alt={`Map of Guinea-Bissau. Bissau is marked on the Atlantic coast; the highlighted raw cashew sourcing regions are ${site.sourcingRegions.join(", ")}.`}
+              width={1000}
+              height={601}
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
+            />
             <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[0.8125rem] text-muted">
               <span className="flex items-center gap-2">
                 <span className="size-2.5 rounded-[3px] bg-shell-tint ring-1 ring-shell/40" aria-hidden />

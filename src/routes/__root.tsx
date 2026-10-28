@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 
 import appCss from "@/styles.css?url";
+import fontUrl from "@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-wght-normal.woff2?url";
 import { site } from "@/data/site";
 import { seo } from "@/data/content";
 import { structuredData } from "@/data/schema";
@@ -38,6 +39,9 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: ogImage },
     ],
     links: [
+      // The font is discovered only after the stylesheet parses; preloading
+      // it removes one round trip from first paint.
+      { rel: "preload", href: fontUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: `${site.url}/` },
       { rel: "icon", href: "/brand/logo-mark.svg", type: "image/svg+xml" },

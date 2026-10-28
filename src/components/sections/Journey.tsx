@@ -62,9 +62,12 @@ export function Journey() {
               <li
                 key={s.n}
                 data-step={i}
+                aria-current={i === active ? "step" : undefined}
                 className={cn(
-                  "border-t border-line py-10 transition-opacity duration-500 lg:flex lg:min-h-[52svh] lg:flex-col lg:justify-center lg:py-14",
-                  i === active ? "lg:opacity-100" : "lg:opacity-35",
+                  // The active stage is marked by a navy rule rather than by
+                  // fading the others, so every stage keeps full contrast.
+                  "border-t-2 py-10 transition-colors duration-500 lg:flex lg:min-h-[52svh] lg:flex-col lg:justify-center lg:py-14",
+                  i === active ? "border-line lg:border-navy" : "border-line",
                 )}
               >
                 <Photo

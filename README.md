@@ -97,6 +97,9 @@ the browser:
   world basemap and the projected shipping destinations.
 - **`src/data/guinea-bissau.ts`** — the nine administrative regions of
   Guinea-Bissau as SVG paths, from `scripts/data/gnb-adm1.geojson`.
+  At build time `scripts/site-files.ts` turns them into
+  `/map/guinea-bissau.svg`, which the page loads as an image — the path data
+  never reaches the browser's JavaScript.
 
 Regenerate both with `pnpm build:map`.
 
@@ -121,8 +124,8 @@ Google AI Overviews, Claude) can identify the company and quote it:
   (with contact point, languages, product specification), WebSite, WebPage
   (`dateModified`), HowTo and FAQPage. Everything is derived from
   `src/data/`, so it never claims what the page doesn't.
-- **`/llms.txt`** — a plain-text company brief for AI assistants, generated at
-  build time from the same data (`scripts/llms-txt.ts`).
+- **`/llms.txt`** — a plain-text company brief with links for AI assistants,
+  generated at build time from the same data (`scripts/site-files.ts`).
 - **`robots.txt`** explicitly welcomes AI crawlers; `sitemap.xml` lists the
   page, its photos and `lastmod`.
 - **`og-image.jpg`** (1200×630 JPEG) for link previews in WhatsApp, LinkedIn

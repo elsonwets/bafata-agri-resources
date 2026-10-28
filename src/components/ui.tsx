@@ -15,6 +15,9 @@ type PhotoProps = {
   sizes?: string;
   /** Above the fold: load eagerly with high priority. */
   priority?: boolean;
+  /** The photo also has a 1100px `-md` derivative — the right size for a
+   *  full-width photo on a high-density phone. Only the hero needs one. */
+  md?: boolean;
   alt?: string;
 };
 
@@ -29,6 +32,7 @@ export function Photo({
   imgClassName,
   sizes = "(max-width: 768px) 100vw, 50vw",
   priority,
+  md,
   alt,
 }: PhotoProps) {
   const photo = bySlug(slug);
@@ -40,7 +44,13 @@ export function Photo({
     >
       <img
         src={src(slug)}
-        srcSet={`${src(slug, true)} 700w, ${src(slug)} 1800w`}
+        srcSet={[
+          `${src(slug, true)} 700w`,
+          md && `/photos/${slug}-md.webp 1100w`,
+          `${src(slug)} 1800w`,
+        ]
+          .filter(Boolean)
+          .join(", ")}
         sizes={sizes}
         alt={alt ?? photo.en}
         width={1800}
