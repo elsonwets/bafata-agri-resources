@@ -11,7 +11,6 @@ const SLUGS = [
   "team-duo-fleet",
   "port-quay-stacks",
   "port-lifting-sling",
-  "founder-portrait-quay",
   "port-fleet-quay",
   "bissau-monument-wide",
   "team-woman-quay",
