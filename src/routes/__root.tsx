@@ -22,6 +22,8 @@ export const Route = createRootRoute({
       { name: "geo.region", content: site.countryCode },
       { name: "geo.placename", content: site.city },
       { name: "geo.position", content: `${site.geo.lat};${site.geo.lng}` },
+      // Bing Webmaster Tools ownership verification.
+      { name: "msvalidate.01", content: "01A80688BA7890C0008B2EA884C6E4F1" },
     ],
     links: [
       // The font is discovered only after the stylesheet parses; preloading
