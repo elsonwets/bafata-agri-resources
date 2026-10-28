@@ -28,7 +28,11 @@ export const Route = createRootRoute({
       // it removes one round trip from first paint.
       { rel: "preload", href: fontUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      // A tight crop of the tree, hardened for 16–96 px (the full emblem with
+      // its wreath turns to a blur at favicon size). Google search uses the
+      // 96 px PNG.
+      { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { rel: "icon", href: "/favicon-96.png", type: "image/png", sizes: "96x96" },
       { rel: "icon", href: "/icon-192.png", type: "image/png", sizes: "192x192" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },

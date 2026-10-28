@@ -30,6 +30,11 @@ function organization() {
     url: site.url,
     description: t.meta.description,
     slogan: site.tagline,
+    // ISIC 4620 / NAICS 424590: wholesale of agricultural raw materials.
+    isicV4: "4620",
+    naics: "424590",
+    keywords:
+      "raw cashew nut exporter Bissau, RCN exporter Guinea-Bissau, exportateur noix de cajou Bissau, entreprise exportation anacarde Guinée-Bissau, exportador castanha de caju Bissau",
     logo: { "@type": "ImageObject", url: `${site.url}/brand/logo-mark.png`, width: 470, height: 369 },
     image: ogImage,
     email: site.email,

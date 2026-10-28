@@ -10,7 +10,8 @@
     "build": "vite build",
     "start": "vite preview --port 3000",
     "typecheck": "tsc --noEmit",
-    "build:map": "node scripts/build-map.mjs && node scripts/build-country.mjs"
+    "build:map": "node scripts/build-map.mjs && node scripts/build-country.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@fontsource-variable/hanken-grotesk": "^5.3.0",

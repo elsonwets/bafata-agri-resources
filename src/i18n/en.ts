@@ -23,7 +23,7 @@ export const en = {
   langName: "English",
 
   meta: {
-    title: "Raw Cashew Nut Exporter in Guinea-Bissau | Bafata Agri Resources",
+    title: "Raw Cashew Nut Exporter in Bissau, Guinea-Bissau | Bafata Agri",
     description:
       "Raw cashew nut (RCN) exporter in Bissau, Guinea-Bissau: sourcing, quality and moisture control, export documents and shipment coordination to your port.",
     ogAlt: "Raw cashew nut bags being loaded at the Port of Bissau, Guinea-Bissau",
@@ -232,7 +232,7 @@ export const en = {
         a: "Bafata Agri Resources, SARL is a raw cashew nut (RCN) export company based in Bissau, Guinea-Bissau. We help international buyers find verified cashew sellers, control quality and moisture, handle the export documentation, and coordinate shipment from the Port of Bissau to the buyer's destination port.",
       },
       {
-        q: "Who exports raw cashew nuts from Guinea-Bissau?",
+        q: "Which companies export raw cashew nuts from Bissau, Guinea-Bissau?",
         a: "Raw cashew nuts from Guinea-Bissau are exported by licensed exporting companies based in Bissau, which buy from smallholder producers across the country and ship through the Port of Bissau. Bafata Agri Resources, SARL is one of these exporters: a Bissau-based company that sources, inspects, documents and ships RCN for international buyers.",
       },
       {

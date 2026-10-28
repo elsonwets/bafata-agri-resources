@@ -12,9 +12,9 @@ export const fr: Dict = {
   langName: "Français",
 
   meta: {
-    title: "Exportateur de noix de cajou brutes en Guinée-Bissau | Bafata Agri Resources",
+    title: "Entreprise d'exportation de noix de cajou à Bissau | Bafata Agri",
     description:
-      "Exportateur de noix de cajou brutes (RCN) à Bissau, Guinée-Bissau : sourcing, contrôle qualité et humidité, documents d'export et coordination de l'expédition jusqu'à votre port.",
+      "Bafata Agri Resources, entreprise d'exportation de noix de cajou (anacarde) à Bissau, Guinée-Bissau : achat, contrôle qualité, documents et expédition.",
     ogAlt: "Sacs de noix de cajou brutes chargés au port de Bissau, Guinée-Bissau",
     ogLocale: "fr_FR",
   },
@@ -48,7 +48,7 @@ export const fr: Dict = {
   hero: {
     pill: `Campagne ${year} : la préparation ouvre en ${prep}`,
     headline: ["Noix de cajou brutes", "de Guinée-Bissau."],
-    lead: "Bafata Agri Resources est un exportateur de noix de cajou brutes basé à Bissau, en Guinée-Bissau. Nous achetons, contrôlons, documentons et expédions la RCN pour les acheteurs internationaux — des régions de production jusqu'au navire, au port de Bissau.",
+    lead: "Bafata Agri Resources est une entreprise d'exportation de noix de cajou brutes (anacarde) basée à Bissau, en Guinée-Bissau. Nous achetons, contrôlons, documentons et expédions la RCN pour les acheteurs internationaux — des régions de production jusqu'au navire, au port de Bissau.",
     primaryCta: "Faire une demande d'achat",
     secondaryCta: "Nous écrire sur WhatsApp",
     meta: [
@@ -219,8 +219,8 @@ export const fr: Dict = {
         a: "Bafata Agri Resources, SARL est une société d'exportation de noix de cajou brutes (RCN) basée à Bissau, en Guinée-Bissau. Nous aidons les acheteurs internationaux à trouver des vendeurs de cajou vérifiés, contrôlons la qualité et l'humidité, gérons les documents d'export et coordonnons l'expédition du port de Bissau jusqu'au port de destination de l'acheteur.",
       },
       {
-        q: "Qui exporte des noix de cajou brutes de Guinée-Bissau ?",
-        a: "Les noix de cajou brutes de Guinée-Bissau sont exportées par des sociétés exportatrices agréées basées à Bissau, qui achètent auprès de petits producteurs dans tout le pays et expédient par le port de Bissau. Bafata Agri Resources, SARL est l'un de ces exportateurs : une société basée à Bissau qui achète, contrôle, documente et expédie la RCN pour les acheteurs internationaux.",
+        q: "Quelles entreprises exportent la noix de cajou à Bissau, en Guinée-Bissau ?",
+        a: "Les noix de cajou brutes (anacarde) de Guinée-Bissau sont exportées par des sociétés exportatrices agréées basées à Bissau, qui achètent auprès de petits producteurs dans tout le pays et expédient par le port de Bissau. Bafata Agri Resources, SARL est l'un de ces exportateurs : une société basée à Bissau qui achète, contrôle, documente et expédie la RCN pour les acheteurs internationaux.",
       },
       {
         q: "Où pousse le cajou en Guinée-Bissau ?",

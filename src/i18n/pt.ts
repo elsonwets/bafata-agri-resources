@@ -12,9 +12,9 @@ export const pt: Dict = {
   langName: "Português",
 
   meta: {
-    title: "Exportador de castanha de caju bruta na Guiné-Bissau | Bafata Agri Resources",
+    title: "Empresa de exportação de caju em Bissau | Bafata Agri Resources",
     description:
-      "Exportador de castanha de caju bruta (RCN) em Bissau, Guiné-Bissau: compra, controlo de qualidade e humidade, documentos de exportação e coordenação do embarque até ao seu porto.",
+      "Bafata Agri Resources, empresa exportadora de castanha de caju em Bissau, Guiné-Bissau: compra, controlo de qualidade, documentos e embarque.",
     ogAlt: "Sacos de castanha de caju bruta a serem carregados no porto de Bissau, Guiné-Bissau",
     ogLocale: "pt_PT",
   },
@@ -48,7 +48,7 @@ export const pt: Dict = {
   hero: {
     pill: `Campanha ${year}: a preparação abre em ${prep}`,
     headline: ["Castanha de caju bruta", "da Guiné-Bissau."],
-    lead: "A Bafata Agri Resources é uma exportadora de castanha de caju bruta sediada em Bissau, na Guiné-Bissau. Compramos, controlamos, documentamos e embarcamos RCN para compradores internacionais — das regiões produtoras até ao navio, no porto de Bissau.",
+    lead: "A Bafata Agri Resources é uma empresa exportadora de castanha de caju bruta sediada em Bissau, na Guiné-Bissau. Compramos, controlamos, documentamos e embarcamos RCN para compradores internacionais — das regiões produtoras até ao navio, no porto de Bissau.",
     primaryCta: "Fazer um pedido de compra",
     secondaryCta: "Falar connosco no WhatsApp",
     meta: [
@@ -219,7 +219,7 @@ export const pt: Dict = {
         a: "A Bafata Agri Resources, SARL é uma empresa de exportação de castanha de caju bruta (RCN) sediada em Bissau, na Guiné-Bissau. Ajudamos compradores internacionais a encontrar vendedores de caju verificados, controlamos a qualidade e a humidade, tratamos da documentação de exportação e coordenamos o embarque do porto de Bissau até ao porto de destino do comprador.",
       },
       {
-        q: "Quem exporta castanha de caju bruta da Guiné-Bissau?",
+        q: "Que empresas exportam castanha de caju em Bissau, na Guiné-Bissau?",
         a: "A castanha de caju bruta da Guiné-Bissau é exportada por empresas exportadoras licenciadas sediadas em Bissau, que compram a pequenos produtores em todo o país e embarcam pelo porto de Bissau. A Bafata Agri Resources, SARL é uma dessas exportadoras: uma empresa sediada em Bissau que compra, controla, documenta e embarca RCN para compradores internacionais.",
       },
       {
