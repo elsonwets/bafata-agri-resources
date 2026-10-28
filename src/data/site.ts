@@ -9,7 +9,7 @@ export const site = {
   shortName: "Bafata Agri Resources",
   legalForm: "SARL",
   tagline: "Raw cashew. From Bissau to the world.",
-  url: "https://bafata-agri-resources.netlify.app",
+  url: "https://bafata-agri.com",
   locale: "en",
   country: "Guinea-Bissau",
   countryCode: "GW",
@@ -21,14 +21,11 @@ export const site = {
   phone: "+245955903406",
   phoneDisplay: "+245 955 903 406",
   whatsapp: "https://wa.me/245955903406",
-  email: "contact@bafata-agri.com",
+  email: "nouna.esteves@gmail.com",
 
   /** Regions we buy raw cashew in. Keep in step with SOURCING in
    *  scripts/build-country.mjs, which highlights them on the map. */
   sourcingRegions: ["Bafatá", "Gabú", "Oio", "Quinara", "Cacheu"],
-
-  /** Languages the team answers in — shown to buyers and in structured data. */
-  languages: ["English", "French", "Portuguese"],
 
   /**
    * Official profiles that confirm this is the same company: LinkedIn,
@@ -41,11 +38,16 @@ export const site = {
   /** Last substantive content review — feeds dateModified and the sitemap. */
   updated: "2026-10-28",
 
-  /** Next buying campaign. Guinea-Bissau's RCN season opens in February. */
+  /**
+   * Two distinct dates, as confirmed by the client. Preparation (volume
+   * reservation, logistics, contracts) opens well before the government
+   * sets the reference price and village buying officially starts.
+   */
   campaign: {
     year: 2027,
-    opensMonth: "February",
-    opensISO: "2027-02-01",
+    preparationMonth: "February",
+    openingMonth: "April",
+    openingISO: "2027-04-01",
   },
 } as const;
 
@@ -61,7 +63,7 @@ export const waLinks = {
     `Hello Bafata Agri Resources — I found you through your website and I'd like to discuss raw cashew nuts from Guinea-Bissau.`,
   ),
   campaign: wa(
-    `Hello Bafata Agri Resources — I'd like to talk about the ${site.campaign.year} campaign opening in ${site.campaign.opensMonth}. Please send me your terms.`,
+    `Hello Bafata Agri Resources — I'd like to prepare the ${site.campaign.year} campaign and reserve volume. Please send me your terms.`,
   ),
   quote: wa(
     `Hello Bafata Agri Resources — I would like a quotation for raw cashew nuts (RCN). Volume: ___ MT. Destination port: ___. Incoterm: ___.`,

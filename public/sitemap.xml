@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://bafata-agri-resources.netlify.app/</loc>
+    <loc>https://bafata-agri.com/</loc>
     <lastmod>2026-10-28</lastmod>
-    <image:image><image:loc>https://bafata-agri-resources.netlify.app/photos/port-crane-quay.webp</image:loc></image:image>
-    <image:image><image:loc>https://bafata-agri-resources.netlify.app/photos/weighbridge-weighing.webp</image:loc></image:image>
-    <image:image><image:loc>https://bafata-agri-resources.netlify.app/photos/warehouse-team-stacking.webp</image:loc></image:image>
-    <image:image><image:loc>https://bafata-agri-resources.netlify.app/photos/vessel-hold-loaded.webp</image:loc></image:image>
-    <image:image><image:loc>https://bafata-agri-resources.netlify.app/photos/team-fleet-portrait.webp</image:loc></image:image>
+    <image:image><image:loc>https://bafata-agri.com/photos/port-crane-quay.webp</image:loc></image:image>
+    <image:image><image:loc>https://bafata-agri.com/photos/weighbridge-weighing.webp</image:loc></image:image>
+    <image:image><image:loc>https://bafata-agri.com/photos/warehouse-team-stacking.webp</image:loc></image:image>
+    <image:image><image:loc>https://bafata-agri.com/photos/vessel-hold-loaded.webp</image:loc></image:image>
+    <image:image><image:loc>https://bafata-agri.com/photos/team-fleet-portrait.webp</image:loc></image:image>
   </url>
 </urlset>

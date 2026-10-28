@@ -33,7 +33,6 @@ export const structuredData = {
       image: ogImage,
       email: site.email,
       telephone: site.phone,
-      knowsLanguage: site.languages,
       address: {
         "@type": "PostalAddress",
         addressLocality: site.city,
@@ -56,7 +55,6 @@ export const structuredData = {
         contactType: "sales",
         telephone: site.phone,
         email: site.email,
-        availableLanguage: site.languages,
         areaServed: "Worldwide",
       },
       knowsAbout: [
@@ -72,7 +70,7 @@ export const structuredData = {
       makesOffer: {
         "@type": "Offer",
         availability: "https://schema.org/PreOrder",
-        availabilityStarts: site.campaign.opensISO,
+        availabilityStarts: site.campaign.openingISO,
         areaServed: "Worldwide",
         itemOffered: {
           "@type": "Product",

@@ -17,4 +17,4 @@ User-agent: Bingbot
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://bafata-agri-resources.netlify.app/sitemap.xml
+Sitemap: https://bafata-agri.com/sitemap.xml

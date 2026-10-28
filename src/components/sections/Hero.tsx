@@ -11,7 +11,7 @@ export function Hero() {
           className="mb-7 inline-flex items-center gap-2 rounded-full bg-raised px-4 py-1.5 text-[0.875rem] text-ink-soft shadow-[0_0_0_1px_var(--line)] transition-colors hover:text-ink"
         >
           <span className="size-1.5 rounded-full bg-shell" aria-hidden />
-          The {site.campaign.year} campaign opens in {site.campaign.opensMonth}
+          {site.campaign.year} campaign: preparation opens in {site.campaign.preparationMonth}
         </a>
 
         <h1 id="hero-title" className="t-hero max-w-[12ch]">

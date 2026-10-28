@@ -121,7 +121,7 @@ Google AI Overviews, Claude) can identify the company and quote it:
 - **FAQ** written as the questions buyers and assistants ask, mirrored in
   `FAQPage` JSON-LD.
 - **JSON-LD graph** in `src/data/schema.ts`: Organization + LocalBusiness
-  (with contact point, languages, product specification), WebSite, WebPage
+  (with contact point and product specification), WebSite, WebPage
   (`dateModified`), HowTo and FAQPage. Everything is derived from
   `src/data/`, so it never claims what the page doesn't.
 - **`/llms.txt`** — a plain-text company brief with links for AI assistants,
@@ -158,7 +158,7 @@ Google Business Profile, directory listings) to `site.sameAs`.
 `@netlify/vite-plugin-tanstack-start` configures the build output.
 
 1. Connect the repository in Netlify.
-2. Update `site.url` in `src/data/site.ts` (and `public/robots.txt`,
+2. The production domain is `bafata-agri.com`; if it changes, update `site.url` in `src/data/site.ts` (and `public/robots.txt`,
    `public/sitemap.xml`) to the production domain, so canonical URLs and Open
    Graph tags point at the real host.
 3. Deploy.

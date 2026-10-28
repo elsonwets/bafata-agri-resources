@@ -27,7 +27,7 @@ export const hero = {
   meta: [
     { k: "Coordinates", v: "11°51′N · 15°35′W" },
     { k: "Base", v: "Bissau, Guinea-Bissau" },
-    { k: "Next campaign", v: `${site.campaign.opensMonth} ${site.campaign.year}` },
+    { k: "Campaign opening", v: `${site.campaign.openingMonth} ${site.campaign.year}` },
   ],
   scrollHint: "Scroll to follow the nut",
 } as const;
@@ -186,13 +186,12 @@ export const markets = {
   heading: ["Raw cashew exports", "from the Port of Bissau"],
   body: "Guinea-Bissau's raw cashew feeds the world's processing hubs. We ship from the Port of Bissau to the destinations our buyers actually work in, on the Incoterm you prefer.",
   incoterms: ["FOB Bissau", "CFR", "CIF", "FAS"],
+  /** Destinations confirmed by the client. Each country must also exist
+   *  in src/data/map-points.ts (scripts/build-map.mjs) to appear on the map. */
   routes: [
-    { city: "Mumbai / Tuticorin", country: "India", lat: 19.08, lng: 72.88 },
-    { city: "Ho Chi Minh City", country: "Vietnam", lat: 10.82, lng: 106.63 },
-    { city: "Jebel Ali", country: "UAE", lat: 25.01, lng: 55.06 },
-    { city: "Singapore", country: "Singapore", lat: 1.29, lng: 103.85 },
-    { city: "Rotterdam", country: "Netherlands", lat: 51.92, lng: 4.48 },
-    { city: "Istanbul", country: "Türkiye", lat: 41.01, lng: 28.98 },
+    { city: "Kollam · Mangalore · Panruti", country: "India" },
+    { city: "Binh Phuoc · Long An", country: "Vietnam" },
+    { city: "Dubai", country: "UAE" },
   ],
   origin: { city: "Bissau", country: "Guinea-Bissau", lat: 11.86, lng: -15.6 },
 } as const;
@@ -258,7 +257,7 @@ export const faqs = [
   },
   {
     q: "When does the Guinea-Bissau cashew campaign start?",
-    a: `Guinea-Bissau's raw cashew campaign opens in February and runs until the rains, usually through June. The ${site.campaign.year} campaign starts in ${site.campaign.opensMonth} ${site.campaign.year}, and buyers who agree terms before the season opens have more choice of lots and shipping dates.`,
+    a: `Guinea-Bissau's official raw cashew campaign opens once the government sets the reference price — for ${site.campaign.year}, in ${site.campaign.openingMonth} ${site.campaign.year}, when village-level buying starts. Preparation opens earlier, in ${site.campaign.preparationMonth} ${site.campaign.year}: volume reservation, logistics planning and contract framing. Buyers who wait for the opening negotiate for what is left.`,
   },
   {
     q: "What quality of raw cashew nuts does Guinea-Bissau produce?",
@@ -297,7 +296,7 @@ export const faqs = [
 export const cta = {
   eyebrow: `Campaign ${site.campaign.year}`,
   heading: ["Looking for raw cashew nuts", "from Guinea-Bissau?"],
-  body: `The ${site.campaign.year} campaign opens in ${site.campaign.opensMonth}. Buyers who talk to us now secure allocation, agree specification and lock freight before the origin gets busy. Send us a message — we answer personally.`,
+  body: `Preparation for the ${site.campaign.year} campaign opens in ${site.campaign.preparationMonth}; official buying starts in ${site.campaign.openingMonth}. Buyers who talk to us now reserve volume and agree terms before the origin gets busy. Send us a message — we answer personally.`,
   primary: "Send a buying request",
   secondary: "WhatsApp us now",
   form: {

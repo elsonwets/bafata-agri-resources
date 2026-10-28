@@ -16,6 +16,9 @@ function arcPath(a: { x: number; y: number }, b: { x: number; y: number }) {
   return `M ${a.x} ${a.y} Q ${(a.x + b.x) / 2} ${(a.y + b.y) / 2 - lift} ${b.x} ${b.y}`;
 }
 
+/** Only the destinations listed in the content file are drawn. */
+const destinations = mapDestinations.filter((d) => markets.routes.some((r) => r.country === d.country));
+
 const mask = "url(/map/world-dots.svg) center / 100% 100% no-repeat";
 
 export function Markets() {
@@ -49,7 +52,7 @@ export function Markets() {
               role="img"
               aria-label={`Shipping routes from the Port of Bissau to ${markets.routes.map((r) => r.city).join(", ")}`}
             >
-              {mapDestinations.map((d) => (
+              {destinations.map((d) => (
                 <path
                   key={d.id}
                   d={arcPath(mapOrigin, d)}
@@ -60,7 +63,7 @@ export function Markets() {
                   strokeDasharray="0.01 0.9"
                 />
               ))}
-              {mapDestinations.map((d) => (
+              {destinations.map((d) => (
                 <circle key={d.id} cx={d.x} cy={d.y} r={0.75} fill="var(--navy)" stroke="#fff" strokeWidth={0.3} />
               ))}
               <circle cx={mapOrigin.x} cy={mapOrigin.y} r={2.6} fill="var(--shell)" opacity={0.2} />

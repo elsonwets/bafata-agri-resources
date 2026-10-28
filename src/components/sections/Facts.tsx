@@ -13,10 +13,9 @@ const FACTS: Array<{ k: string; v: string }> = [
   { k: "Based in", v: `${site.city}, ${site.country}` },
   { k: "Sourcing regions", v: site.sourcingRegions.join(", ") },
   { k: "Export port", v: "Port of Bissau" },
-  { k: "Campaign", v: `February to June. The ${site.campaign.year} campaign opens in ${site.campaign.opensMonth}` },
+  { k: "Campaign", v: `Preparation opens ${site.campaign.preparationMonth} ${site.campaign.year}; official opening ${site.campaign.openingMonth} ${site.campaign.year}` },
   { k: "Incoterms", v: markets.incoterms.join(", ") },
   { k: "Destinations", v: [...new Set(markets.routes.map((r) => r.country))].join(", ") },
-  { k: "Languages", v: site.languages.join(", ") },
   { k: "Contact", v: `${site.phoneDisplay} (WhatsApp) · ${site.email}` },
 ];
 
