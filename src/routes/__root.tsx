@@ -3,72 +3,10 @@ import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-r
 
 import appCss from "@/styles.css?url";
 import { site } from "@/data/site";
-import { faqs, seo } from "@/data/content";
+import { seo } from "@/data/content";
+import { structuredData } from "@/data/schema";
 
-const ogImage = `${site.url}/photos/port-crane-quay.webp`;
-
-/**
- * Structured data. The Organization block establishes who is answering, and
- * the FAQPage block is what answer engines lift verbatim.
- */
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": ["Organization", "LocalBusiness"],
-      "@id": `${site.url}/#organization`,
-      name: site.name,
-      alternateName: site.shortName,
-      url: site.url,
-      description: seo.description,
-      logo: `${site.url}/brand/logo-mark.svg`,
-      telephone: site.phone,
-      areaServed: "Worldwide",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: site.city,
-        addressCountry: site.countryCode,
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: site.geo.lat,
-        longitude: site.geo.lng,
-      },
-      knowsAbout: [
-        "Raw cashew nuts",
-        "RCN export",
-        "Guinea-Bissau cashew campaign",
-        "Export documentation",
-        "Phytosanitary certification",
-      ],
-      makesOffer: {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Product",
-          name: "Raw cashew nuts (RCN), Guinea-Bissau origin",
-          category: "Agricultural commodity",
-        },
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${site.url}/#website`,
-      url: site.url,
-      name: site.name,
-      publisher: { "@id": `${site.url}/#organization` },
-      inLanguage: "en",
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${site.url}/#faq`,
-      mainEntity: faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ],
-};
+const ogImage = `${site.url}/og-image.jpg`;
 
 export const Route = createRootRoute({
   head: () => ({
@@ -77,7 +15,10 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: seo.title },
       { name: "description", content: seo.description },
-      { name: "keywords", content: seo.keywords.join(", ") },
+      { name: "author", content: site.name },
+      { name: "geo.region", content: site.countryCode },
+      { name: "geo.placename", content: site.city },
+      { name: "geo.position", content: `${site.geo.lat};${site.geo.lng}` },
       { name: "theme-color", content: "#f3f4f0" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:type", content: "website" },
@@ -87,8 +28,9 @@ export const Route = createRootRoute({
       { property: "og:title", content: seo.title },
       { property: "og:description", content: seo.description },
       { property: "og:image", content: ogImage },
-      { property: "og:image:width", content: "1800" },
-      { property: "og:image:height", content: "1200" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:alt", content: seo.ogAlt },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: seo.title },
@@ -99,6 +41,7 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: `${site.url}/` },
       { rel: "icon", href: "/brand/logo-mark.svg", type: "image/svg+xml" },
+      { rel: "alternate", type: "text/plain", href: "/llms.txt", title: "LLM summary" },
     ],
     scripts: [
       {

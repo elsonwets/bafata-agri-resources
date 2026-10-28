@@ -14,7 +14,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Footer">
-          <h2 className="text-[0.875rem] font-semibold">Navigate</h2>
+          <p className="text-[0.875rem] font-semibold">Navigate</p>
           <ul className="mt-4 grid gap-2.5 text-[0.9375rem] text-ink-soft">
             {nav.map((n) => (
               <li key={n.href}>
@@ -25,7 +25,7 @@ export function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-[0.875rem] font-semibold">Contact</h2>
+          <p className="text-[0.875rem] font-semibold">Contact</p>
           <ul className="mt-4 grid gap-2.5 text-[0.9375rem] text-ink-soft">
             <li>
               <a href={waLinks.general} target="_blank" rel="noopener noreferrer" className="num hover:text-ink">

@@ -3,9 +3,9 @@ import { Heading, PlusIcon } from "@/components/ui";
 
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="defer section">
+    <section id="faq" aria-labelledby="faq-title" className="defer section bg-raised">
       <div className="shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <Heading id="faq-title" className="max-w-[10ch]">Questions buyers ask</Heading>
+        <Heading id="faq-title" className="max-w-[12ch]">Raw cashew export questions</Heading>
 
         <div className="border-t border-line">
           {faqs.map((f) => (

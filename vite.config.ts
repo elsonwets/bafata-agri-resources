@@ -3,6 +3,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import netlify from "@netlify/vite-plugin-tanstack-start";
+import { llmsTxt } from "./scripts/llms-txt.ts";
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
@@ -14,6 +15,7 @@ export default defineConfig({
       prerender: { enabled: true, crawlLinks: false },
     }),
     react(),
+    llmsTxt(),
     // No edge functions in this project; their local Deno emulation only
     // adds startup time and a CLI-version error.
     netlify({ dev: { edgeFunctions: { enabled: false } } }),

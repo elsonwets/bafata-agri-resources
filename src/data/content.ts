@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { site } from "./site.ts";
 
 /**
  * All page copy. Written for two readers at once: a procurement manager
@@ -10,27 +10,18 @@ import { site } from "./site";
  */
 
 export const seo = {
-  title: "Raw Cashew Nuts from Guinea-Bissau | Bafata Agri Resources",
+  title: "Raw Cashew Nut Exporter in Guinea-Bissau | Bafata Agri Resources",
   description:
-    "Bafata Agri Resources sources, inspects and exports raw cashew nuts (RCN) from Guinea-Bissau. Verified sellers, full export documentation, delivery to your port. Talk to us about the 2027 campaign.",
-  keywords: [
-    "raw cashew nuts Guinea-Bissau",
-    "RCN exporter Guinea-Bissau",
-    "buy raw cashew nuts Bissau",
-    "Guinea-Bissau cashew export",
-    "cashew nut supplier West Africa",
-    "RCN outturn KOR moisture",
-    "cashew campaign 2027",
-    "Bafata Agri Resources",
-  ],
+    "Raw cashew nut (RCN) exporter in Bissau, Guinea-Bissau: sourcing, quality and moisture control, export documents and shipment coordination to your port.",
   ogAlt:
     "Raw cashew nut bags being loaded at the Port of Bissau, Guinea-Bissau",
 } as const;
 
 export const hero = {
   eyebrow: "Bissau · Guinea-Bissau",
-  headline: ["Raw cashew.", "From Bissau", "to the world."],
-  lead: "Bafata Agri Resources connects international buyers to Guinea-Bissau's raw cashew nut supply — and manages the sourcing, the inspection, the paperwork and the shipping until the container reaches your port.",
+  headline: ["Raw cashew nuts", "from Guinea-Bissau."],
+  /** Entity-first: the sentence an answer engine should lift verbatim. */
+  lead: "Bafata Agri Resources is a raw cashew nut exporter based in Bissau, Guinea-Bissau. We source, inspect, document and ship RCN for international buyers — from the producing regions to the vessel at the Port of Bissau.",
   primaryCta: "Start a buying request",
   secondaryCta: "Talk to us on WhatsApp",
   meta: [
@@ -43,7 +34,7 @@ export const hero = {
 
 export const origin = {
   eyebrow: "The origin",
-  heading: ["One of West Africa's", "great cashew origins."],
+  heading: ["Raw cashew nut sourcing", "in Guinea-Bissau"],
   body: [
     "Guinea-Bissau is one of the world's largest exporters of raw cashew nuts, and cashew is the backbone of its economy. The crop grows across Bafatá, Gabú, Oio, Quinara and Cacheu — smallholder orchards feeding a harvest that opens every year in February.",
     "What the origin does not have is an easy interface. Sellers are dispersed, the paperwork is local, and the port has its own rhythm. That gap is exactly what we exist to close.",
@@ -60,7 +51,7 @@ export const origin = {
 
 export const operation = {
   eyebrow: "Why work with us",
-  heading: ["You don't need", "to build this.", "We're already here."],
+  heading: ["A local export partner", "for international cashew buyers"],
   body: "Buying raw cashew from a new origin usually means hiring an agent, chasing a warehouse, arguing about weights and learning a customs regime. We have spent our campaigns building that infrastructure so you can skip it.",
   capabilities: [
     { n: "01", title: "Sourcing", text: "We identify and vet sellers across the producing regions and negotiate on your behalf." },
@@ -76,7 +67,7 @@ export const operation = {
 
 export const journey = {
   eyebrow: "From soil to ship",
-  heading: "The journey of your shipment",
+  heading: "From cashew sourcing to export shipment",
   lead: "Eight stages, each one documented. This is what happens between a farmer's orchard in Bafatá and a vessel leaving the Port of Bissau.",
   steps: [
     {
@@ -144,7 +135,7 @@ export const journey = {
  */
 export const quality = {
   eyebrow: "Quality & moisture",
-  heading: ["Quality starts", "before the shipment."],
+  heading: ["Raw cashew quality control", "before shipment"],
   lead: "The best lot in Guinea-Bissau is worth nothing to you if it is weighed loosely or dried carelessly. We measure first and ship second.",
   console: {
     label: "Precision weighing",
@@ -175,7 +166,7 @@ export const quality = {
 
 export const paperwork = {
   eyebrow: "Documentation",
-  heading: ["Local complexity.", "One point of contact."],
+  heading: ["Guinea-Bissau export documentation,", "handled by one team"],
   body: "Exporting from Guinea-Bissau touches several administrations, each with its own timing. We hold the file, chase the signatures and send you the documents as they are issued — so nothing is discovered at the last minute.",
   docs: [
     { title: "Export licence", text: "Registration and campaign authorisation with the competent authority." },
@@ -192,7 +183,7 @@ export const paperwork = {
 
 export const markets = {
   eyebrow: "Destinations",
-  heading: ["From Bissau", "to global markets."],
+  heading: ["Raw cashew exports", "from the Port of Bissau"],
   body: "Guinea-Bissau's raw cashew feeds the world's processing hubs. We ship from the Port of Bissau to the destinations our buyers actually work in, on the Incoterm you prefer.",
   incoterms: ["FOB Bissau", "CFR", "CIF", "FAS"],
   routes: [
@@ -208,7 +199,7 @@ export const markets = {
 
 export const pillars = {
   eyebrow: "What you get",
-  heading: "Four reasons buyers stay with us",
+  heading: "Why cashew buyers work with us",
   items: [
     {
       n: "01",
@@ -239,8 +230,8 @@ export const pillars = {
 
 export const howToBuy = {
   eyebrow: "How it works",
-  heading: "How to buy with us",
-  lead: "Six steps from first message to arrival. Most buyers get to a firm offer within 48 hours.",
+  heading: "How to buy raw cashew nuts from Guinea-Bissau",
+  lead: "Six steps from first message to arrival. We reply to every request within one business day.",
   steps: [
     { n: "01", title: "Tell us what you need", text: "Volume in MT, destination port, Incoterm, target specification and shipment window." },
     { n: "02", title: "Receive our offer", text: "A firm price with the specification we commit to, plus the document list you will receive." },
@@ -255,15 +246,31 @@ export const howToBuy = {
 export const faqs = [
   {
     q: "What does Bafata Agri Resources do?",
-    a: "Bafata Agri Resources, SARL is a raw cashew nut (RCN) export company based in Bissau, Guinea-Bissau. We help international buyers find verified cashew sellers, control quality and moisture, handle the complete export documentation, and ship to the buyer's destination port — staying with the client until the shipment is delivered and accepted.",
+    a: "Bafata Agri Resources, SARL is a raw cashew nut (RCN) export company based in Bissau, Guinea-Bissau. We help international buyers find verified cashew sellers, control quality and moisture, handle the export documentation, and coordinate shipment from the Port of Bissau to the buyer's destination port.",
+  },
+  {
+    q: "Who exports raw cashew nuts from Guinea-Bissau?",
+    a: "Raw cashew nuts from Guinea-Bissau are exported by licensed exporting companies based in Bissau, which buy from smallholder producers across the country and ship through the Port of Bissau. Bafata Agri Resources, SARL is one of these exporters: a Bissau-based company that sources, inspects, documents and ships RCN for international buyers.",
+  },
+  {
+    q: "Where are cashews grown in Guinea-Bissau?",
+    a: "Cashew is grown by smallholder farmers across most of Guinea-Bissau. Bafata Agri Resources buys in the regions of Bafatá, Gabú, Oio, Quinara and Cacheu, and consolidates lots in Bissau before export.",
   },
   {
     q: "When does the Guinea-Bissau cashew campaign start?",
-    a: `Guinea-Bissau's raw cashew campaign opens in February and runs until the rains, usually through June. The ${site.campaign.year} campaign starts in ${site.campaign.opensMonth} ${site.campaign.year}, and buyers who position early get the better lots and the better freight.`,
+    a: `Guinea-Bissau's raw cashew campaign opens in February and runs until the rains, usually through June. The ${site.campaign.year} campaign starts in ${site.campaign.opensMonth} ${site.campaign.year}, and buyers who agree terms before the season opens have more choice of lots and shipping dates.`,
   },
   {
     q: "What quality of raw cashew nuts does Guinea-Bissau produce?",
     a: "Guinea-Bissau RCN typically delivers an outturn (KOR) of 46 to 52 lbs, moisture of 8 to 10%, a nut count of 180 to 200 per kilogram and defects under 10%. Every lot we ship is cut-tested and moisture-checked, and the analysis travels with the shipment.",
+  },
+  {
+    q: "What do KOR, outturn and nut count mean for raw cashew nuts?",
+    a: "Outturn, or KOR (kernel outturn ratio), is the weight in pounds of usable kernel recovered from an 80 kg bag of raw cashew nuts — the higher, the better. Nut count is the number of nuts per kilogram — the lower, the larger the nuts. Moisture is the water content of the nuts; lower moisture keeps the lot stable in storage and transit.",
+  },
+  {
+    q: "Which port are Guinea-Bissau cashews shipped from?",
+    a: "Guinea-Bissau's raw cashew exports are shipped from the Port of Bissau. Bafata Agri Resources trucks lots from its Bissau warehouse to the terminal and supervises stuffing and loading on the quay.",
   },
   {
     q: "Which export documents do you provide?",
@@ -274,12 +281,16 @@ export const faqs = [
     a: "We ship FOB Bissau, FAS, CFR and CIF to the destination ports our buyers work in — including India, Vietnam, the UAE, Singapore, Türkiye and Northern Europe.",
   },
   {
+    q: "What payment terms do you accept?",
+    a: "We agree payment terms contract by contract — typically a letter of credit (L/C) or cash against documents (CAD), or another structure that works for both sides. The document set is prepared to match your bank's wording.",
+  },
+  {
     q: "What is the minimum order quantity?",
     a: "We work in full container loads and vessel parcels. Tell us your target volume in metric tonnes and your destination port, and we will confirm what is workable for your shipment window.",
   },
   {
     q: "How do I start?",
-    a: `Send us a message on WhatsApp at ${site.phoneDisplay} or submit a buying request on this page with your volume, destination port and Incoterm. We usually come back with a firm offer within 48 hours.`,
+    a: `Send us a message on WhatsApp at ${site.phoneDisplay} or submit a buying request on this page with your volume, destination port and Incoterm. We reply within one business day and send an offer once the specification and volume are confirmed.`,
   },
 ] as const;
 

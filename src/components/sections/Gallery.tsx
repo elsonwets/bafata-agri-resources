@@ -30,7 +30,7 @@ export function Gallery() {
     <section id="gallery" aria-labelledby="gallery-title" className="defer section bg-raised">
       <div className="shell flex items-end justify-between gap-6">
         <Heading id="gallery-title" className="max-w-[16ch]">
-          On the ground in Guinea-Bissau
+          Our cashew export operation in Bissau
         </Heading>
         <div className="hidden gap-2 sm:flex">
           {([-1, 1] as const).map((d) => (

@@ -11,6 +11,7 @@ import { Markets } from "@/components/sections/Markets";
 import { Pillars } from "@/components/sections/Pillars";
 import { HowToBuy } from "@/components/sections/HowToBuy";
 import { Gallery } from "@/components/sections/Gallery";
+import { Facts } from "@/components/sections/Facts";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 
@@ -33,6 +34,7 @@ function Home() {
         <Pillars />
         <HowToBuy />
         <Gallery />
+        <Facts />
         <Faq />
         <Contact />
       </main>

@@ -5,6 +5,7 @@
 
 export const site = {
   name: "Bafata Agri Resources, SARL",
+  legalName: "Bafata Agri Resources, SARL",
   shortName: "Bafata Agri Resources",
   legalForm: "SARL",
   tagline: "Raw cashew. From Bissau to the world.",
@@ -21,6 +22,20 @@ export const site = {
   phoneDisplay: "+245 955 903 406",
   whatsapp: "https://wa.me/245955903406",
   email: "contact@bafata-agri.com",
+
+  /** Languages the team answers in — shown to buyers and in structured data. */
+  languages: ["English", "French", "Portuguese"],
+
+  /**
+   * Official profiles that confirm this is the same company: LinkedIn,
+   * Google Business Profile, trade-directory listings. Answer engines use
+   * these links to tie the website to the company's other mentions online.
+   * Add each URL as soon as the profile exists.
+   */
+  sameAs: [] as string[],
+
+  /** Last substantive content review — feeds dateModified and the sitemap. */
+  updated: "2026-10-28",
 
   /** Next buying campaign. Guinea-Bissau's RCN season opens in February. */
   campaign: {

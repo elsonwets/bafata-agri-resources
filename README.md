@@ -105,6 +105,35 @@ rendered under the map on the site is a licence requirement — do not remove it
 
 ---
 
+## SEO and AI answer engines
+
+The page is written so search engines and AI assistants (ChatGPT, Perplexity,
+Google AI Overviews, Claude) can identify the company and quote it:
+
+- **Headings carry the search intent** ("Raw cashew nut sourcing in
+  Guinea-Bissau", "How to buy raw cashew nuts from Guinea-Bissau"), and the
+  hero opens with an entity sentence: who the company is, what it does, where.
+- **"At a glance" block** (`src/components/sections/Facts.tsx`) — the company's
+  facts in one table, derived from the data files.
+- **FAQ** written as the questions buyers and assistants ask, mirrored in
+  `FAQPage` JSON-LD.
+- **JSON-LD graph** in `src/data/schema.ts`: Organization + LocalBusiness
+  (with contact point, languages, product specification), WebSite, WebPage
+  (`dateModified`), HowTo and FAQPage. Everything is derived from
+  `src/data/`, so it never claims what the page doesn't.
+- **`/llms.txt`** — a plain-text company brief for AI assistants, generated at
+  build time from the same data (`scripts/llms-txt.ts`).
+- **`robots.txt`** explicitly welcomes AI crawlers; `sitemap.xml` lists the
+  page, its photos and `lastmod`.
+- **`og-image.jpg`** (1200×630 JPEG) for link previews in WhatsApp, LinkedIn
+  and email.
+
+When content changes, bump `site.updated` in `src/data/site.ts` and the
+`<lastmod>` in `public/sitemap.xml`. Add each official profile (LinkedIn,
+Google Business Profile, directory listings) to `site.sameAs`.
+
+---
+
 ## Design and motion
 
 - Light, mineral palette defined as tokens at the top of `src/styles.css`:
