@@ -37,9 +37,25 @@ specifications.**
 
 | File | Holds |
 | --- | --- |
-| `src/data/site.ts` | Company facts, phone number, WhatsApp links, campaign year, nav |
-| `src/data/content.ts` | Every headline, paragraph, table row and FAQ answer |
-| `src/data/photos.ts` | The photo manifest (auto-generated — see below) |
+| `src/data/site.ts` | Company facts, phone, email, campaign dates, Incoterms, regions |
+| `src/i18n/en.ts` | Every English headline, paragraph, table row and FAQ answer (the reference) |
+| `src/i18n/fr.ts`, `src/i18n/pt.ts` | The French and Portuguese versions — same shape, enforced by TypeScript |
+| `src/data/guides.ts` | The three English buyer guides |
+| `src/data/photos.ts` | The photo manifest (auto-generated — see below); Portuguese alt text in `src/i18n/photo-alt-pt.ts` |
+
+### Languages
+
+The home page exists at `/` (English), `/fr/` and `/pt/`, with `hreflang`
+links between them. Change a text in all three dictionaries. The French and
+Portuguese copy should be reviewed by a native speaker before it is relied on.
+
+### Buyer guides
+
+`/raw-cashew-nuts-guinea-bissau/`, `/cashew-export-documentation/` and
+`/buy-raw-cashew-nuts/` are rendered from `src/data/guides.ts` by
+`src/components/GuidePage.tsx`. To add one: add an entry, create
+`src/routes/<slug>/index.tsx` like the others, and add the path to
+`prerender.pages` in `vite.config.ts`.
 
 ### Phone number and WhatsApp
 
@@ -48,27 +64,24 @@ the page, and the pre-filled message each one sends, is derived from there.
 
 ### The 2027 campaign
 
-`site.campaign` drives the hero meta row, the CTA section, the footer badge
-and one of the FAQ answers. Change the year and month in one place.
+`site.campaign` holds the year and dates; the month names are in each
+dictionary (`campaign.prep`, `campaign.opening`).
 
 ### Specifications (KOR, moisture, nut count)
 
-`quality.table.rows` and `origin.stats` in `src/data/content.ts`.
-
-> ⚠️ **Confirm these figures before going live.** They are written as typical
-> ranges for Guinea-Bissau origin, not as contractual guarantees, and the page
-> says so — but they should still match what the business actually delivers.
+`quality.table.rows` and `origin.stats` in each dictionary. They were
+confirmed by the client; any change must come from the client too.
 
 ---
 
 ## The brand mark
 
-`public/brand/logo-mark.svg` is a vector reconstruction of the company's
-embossed navy seal — tree of life, laurel wreath, arc of stars, Sri Yantra
-medallion with sun rays, and cashew apples in the crown.
+The client's logo, cut out of their artwork onto a transparent background:
 
-It is used as-is in the header and footer and as the favicon. To replace it,
-drop the client's own file in as `public/brand/logo-mark.svg`.
+- `public/brand/logo-mark-96.webp` — the emblem, header size
+- `public/brand/logo-mark.webp` / `logo-mark.png` — the emblem, full size (the PNG is the logo in structured data)
+- `public/brand/logo-lockup.webp` — emblem with the company name, footer
+- `public/favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, `site.webmanifest` — site icons
 
 ---
 
@@ -126,13 +139,13 @@ Google AI Overviews, Claude) can identify the company and quote it:
   `src/data/`, so it never claims what the page doesn't.
 - **`/llms.txt`** — a plain-text company brief with links for AI assistants,
   generated at build time from the same data (`scripts/site-files.ts`).
-- **`robots.txt`** explicitly welcomes AI crawlers; `sitemap.xml` lists the
-  page, its photos and `lastmod`.
+- **`robots.txt`** explicitly welcomes AI crawlers; **`sitemap.xml`** is
+  generated at build time with every page and its `hreflang` alternates.
 - **`og-image.jpg`** (1200×630 JPEG) for link previews in WhatsApp, LinkedIn
   and email.
 
-When content changes, bump `site.updated` in `src/data/site.ts` and the
-`<lastmod>` in `public/sitemap.xml`. Add each official profile (LinkedIn,
+When content changes, bump `site.updated` in `src/data/site.ts` — it feeds
+the sitemap, structured data and the guides' "Updated" date. Add each official profile (LinkedIn,
 Google Business Profile, directory listings) to `site.sameAs`.
 
 ---

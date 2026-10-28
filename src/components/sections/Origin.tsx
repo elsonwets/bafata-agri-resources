@@ -1,8 +1,10 @@
-import { origin } from "@/data/content";
+import { useDict } from "@/i18n";
 import { site } from "@/data/site";
 import { Heading } from "@/components/ui";
 
 export function Origin() {
+  const { origin } = useDict();
+
   return (
     <section id="origin" aria-labelledby="origin-title" className="section">
       <div className="shell">
@@ -17,7 +19,7 @@ export function Origin() {
             {/* Generated at build time by scripts/site-files.ts. */}
             <img
               src="/map/guinea-bissau.svg"
-              alt={`Map of Guinea-Bissau. Bissau is marked on the Atlantic coast; the highlighted raw cashew sourcing regions are ${site.sourcingRegions.join(", ")}.`}
+              alt={origin.mapAlt(site.sourcingRegions.join(", "))}
               width={1000}
               height={601}
               loading="lazy"
@@ -27,10 +29,10 @@ export function Origin() {
             <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[0.8125rem] text-muted">
               <span className="flex items-center gap-2">
                 <span className="size-2.5 rounded-[3px] bg-shell-tint ring-1 ring-shell/40" aria-hidden />
-                Regions we buy in
+                {origin.mapLegend}
               </span>
               <span>
-                Boundaries:{" "}
+                {origin.boundaries}:{" "}
                 <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
                   geoBoundaries
                 </a>

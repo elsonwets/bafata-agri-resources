@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { bySlug } from "@/data/photos";
+import { photoAltPt } from "@/i18n/photo-alt-pt";
+import { useDict } from "@/i18n";
 import { Heading, Photo } from "@/components/ui";
 
 const SLUGS = [
@@ -21,6 +23,7 @@ const SLUGS = [
  * does the physics; the two buttons are a convenience for mouse users.
  */
 export function Gallery() {
+  const t = useDict();
   const rail = useRef<HTMLUListElement>(null);
   const page = (dir: 1 | -1) =>
     rail.current?.scrollBy({ left: dir * rail.current.clientWidth * 0.8, behavior: "smooth" });
@@ -29,7 +32,7 @@ export function Gallery() {
     <section id="gallery" aria-labelledby="gallery-title" className="defer section bg-raised">
       <div className="shell flex items-end justify-between gap-6">
         <Heading id="gallery-title" className="max-w-[16ch]">
-          Our cashew export operation in Bissau
+          {t.gallery.heading}
         </Heading>
         <div className="hidden gap-2 sm:flex">
           {([-1, 1] as const).map((d) => (
@@ -37,7 +40,7 @@ export function Gallery() {
               key={d}
               type="button"
               onClick={() => page(d)}
-              aria-label={d < 0 ? "Previous photos" : "Next photos"}
+              aria-label={d < 0 ? t.gallery.prev : t.gallery.next}
               className="grid size-11 place-items-center rounded-full bg-sunken text-ink transition-colors hover:bg-line-strong"
             >
               <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -65,7 +68,7 @@ export function Gallery() {
                     (p.portrait ? "w-[18rem] sm:w-[20rem]" : "w-[80vw] sm:w-[40rem]")
                   }
                 />
-                <figcaption className="mt-3 max-w-[36ch] text-[0.875rem] text-muted">{p.en}</figcaption>
+                <figcaption className="mt-3 max-w-[36ch] text-[0.875rem] text-muted">{t.lang === "fr" ? p.fr : t.lang === "pt" ? (photoAltPt[slug] ?? p.en) : p.en}</figcaption>
               </figure>
             </li>
           );

@@ -13,6 +13,14 @@ export default defineConfig({
     // nothing can cold-start or crash, and unknown URLs get /404.html.
     tanstackStart({
       prerender: { enabled: true, crawlLinks: false },
+      pages: [
+        { path: "/" },
+        { path: "/fr/" },
+        { path: "/pt/" },
+        { path: "/raw-cashew-nuts-guinea-bissau/" },
+        { path: "/cashew-export-documentation/" },
+        { path: "/buy-raw-cashew-nuts/" },
+      ],
     }),
     react(),
     siteFiles(),

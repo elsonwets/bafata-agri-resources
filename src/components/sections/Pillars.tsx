@@ -1,7 +1,8 @@
-import { pillars } from "@/data/content";
+import { useDict } from "@/i18n";
 import { Heading, Photo } from "@/components/ui";
 
 export function Pillars() {
+  const { pillars } = useDict();
   return (
     <section aria-labelledby="pillars-title" className="defer section bg-raised">
       <div className="shell">

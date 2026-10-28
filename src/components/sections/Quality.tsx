@@ -1,7 +1,8 @@
-import { quality } from "@/data/content";
+import { useDict } from "@/i18n";
 import { CheckIcon, Heading, Photo } from "@/components/ui";
 
 export function Quality() {
+  const { quality } = useDict();
   const [param, target, market, ours] = quality.table.head;
 
   return (
@@ -16,7 +17,7 @@ export function Quality() {
           <div className="overflow-x-auto rounded-[24px] bg-canvas p-2 sm:p-3">
             <table className="num w-full min-w-[34rem] border-collapse text-left text-[0.9375rem]">
               <caption className="sr-only">
-                Raw cashew quality parameters: contract target, typical market range and the range our lots deliver
+                {quality.tableCaption}
               </caption>
               <thead>
                 <tr className="text-muted">

@@ -1,7 +1,8 @@
-import { operation } from "@/data/content";
+import { useDict } from "@/i18n";
 import { Heading, Photo } from "@/components/ui";
 
 export function Operation() {
+  const { operation } = useDict();
   return (
     <section id="operation" aria-labelledby="operation-title" className="defer bg-raised section">
       <div className="shell grid gap-14 lg:grid-cols-[0.95fr_1fr] lg:gap-20">

@@ -1,8 +1,11 @@
-import { hero } from "@/data/content";
-import { site, waLinks } from "@/data/site";
+import { useDict } from "@/i18n";
+import { wa } from "@/data/site";
 import { Action, Photo, WhatsAppIcon } from "@/components/ui";
 
 export function Hero() {
+  const t = useDict();
+  const { hero } = t;
+
   return (
     <section id="top" aria-labelledby="hero-title" className="pt-14 sm:pt-20">
       <div className="shell flex flex-col items-center text-center">
@@ -11,7 +14,7 @@ export function Hero() {
           className="mb-7 inline-flex items-center gap-2 rounded-full bg-raised px-4 py-1.5 text-[0.875rem] text-ink-soft shadow-[0_0_0_1px_var(--line)] transition-colors hover:text-ink"
         >
           <span className="size-1.5 rounded-full bg-shell" aria-hidden />
-          {site.campaign.year} campaign: preparation opens in {site.campaign.preparationMonth}
+          {hero.pill}
         </a>
 
         <h1 id="hero-title" className="t-hero max-w-[12ch]">
@@ -22,12 +25,7 @@ export function Hero() {
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
           <Action href="#contact">{hero.primaryCta}</Action>
-          <Action
-            href={waLinks.general}
-            external
-            variant="secondary"
-            icon={<WhatsAppIcon />}
-          >
+          <Action href={wa(t.wa.general)} external variant="secondary" icon={<WhatsAppIcon />}>
             {hero.secondaryCta}
           </Action>
         </div>

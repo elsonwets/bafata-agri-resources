@@ -1,18 +1,16 @@
 import { useState, type FormEvent } from "react";
-import { cta } from "@/data/content";
-import { site, wa, waLinks } from "@/data/site";
+import { useDict, type Dict } from "@/i18n";
+import { site, wa } from "@/data/site";
 import { Action, CheckIcon, WhatsAppIcon } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-const INCOTERMS = ["FOB Bissau", "CFR", "CIF", "FAS", "Not sure yet"];
-
 type Field = {
-  name: keyof typeof cta.form.fields;
+  name: keyof Dict["cta"]["form"]["fields"];
   type?: string;
   required?: boolean;
-  options?: string[];
+  options?: boolean;
   full?: boolean;
-  placeholder?: string;
+  placeholder?: keyof Dict["cta"]["form"]["placeholders"];
   autoComplete?: string;
 };
 
@@ -21,10 +19,10 @@ const FIELDS: Field[] = [
   { name: "company", required: true, autoComplete: "organization" },
   { name: "email", type: "email", required: true, autoComplete: "email" },
   { name: "country", autoComplete: "country-name" },
-  { name: "volume", type: "text", placeholder: "e.g. 500" },
-  { name: "port", placeholder: "e.g. Tuticorin" },
-  { name: "incoterm", options: INCOTERMS },
-  { name: "window", placeholder: "e.g. March–April 2027" },
+  { name: "volume", placeholder: "volume" },
+  { name: "port", placeholder: "port" },
+  { name: "incoterm", options: true },
+  { name: "window", placeholder: "window" },
   { name: "message", full: true },
 ];
 
@@ -37,6 +35,9 @@ const FIELDS: Field[] = [
  * what they sent. Validation is the browser's; there is nothing to fake.
  */
 export function Contact() {
+  const t = useDict();
+  const { cta } = t;
+  const L = cta.form.messageLabels;
   const [sent, setSent] = useState<string | null>(null);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -49,19 +50,19 @@ export function Contact() {
     };
 
     const body = [
-      `New buying request — raw cashew nuts, Guinea-Bissau`,
+      cta.form.messageTitle,
       ``,
-      line("Name", "name"),
-      line("Company", "company"),
-      line("Email", "email"),
-      line("Destination country", "country"),
-      line("Volume (MT)", "volume"),
-      line("Destination port", "port"),
-      line("Incoterm", "incoterm"),
-      line("Shipment window", "window"),
-      line("Notes", "message"),
+      line(L.name, "name"),
+      line(L.company, "company"),
+      line(L.email, "email"),
+      line(L.country, "country"),
+      line(L.volume, "volume"),
+      line(L.port, "port"),
+      line(L.incoterm, "incoterm"),
+      line(L.window, "window"),
+      line(L.message, "message"),
       ``,
-      `Sent from ${site.url}`,
+      `${cta.form.sentFrom} ${site.url}`,
     ]
       .filter((l) => l !== null)
       .join("\n");
@@ -85,15 +86,15 @@ export function Contact() {
 
           <dl className="mt-10 grid gap-6 text-[1rem]">
             <div>
-              <dt className="text-muted">WhatsApp and phone</dt>
+              <dt className="text-muted">{cta.phoneLabel}</dt>
               <dd className="mt-1">
-                <a href={waLinks.general} target="_blank" rel="noopener noreferrer" className="num text-[1.25rem] font-semibold tracking-[-0.02em] text-navy hover:underline">
+                <a href={wa(t.wa.general)} target="_blank" rel="noopener noreferrer" className="num text-[1.25rem] font-semibold tracking-[-0.02em] text-navy hover:underline">
                   {site.phoneDisplay}
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="text-muted">Email</dt>
+              <dt className="text-muted">{cta.emailLabel}</dt>
               <dd className="mt-1">
                 <a href={`mailto:${site.email}`} className="text-[1.25rem] font-semibold tracking-[-0.02em] text-navy hover:underline">
                   {site.email}
@@ -101,8 +102,8 @@ export function Contact() {
               </dd>
             </div>
             <div>
-              <dt className="text-muted">Office</dt>
-              <dd className="mt-1 font-medium">Bissau, Guinea-Bissau</dd>
+              <dt className="text-muted">{cta.officeLabel}</dt>
+              <dd className="mt-1 font-medium">{cta.office}</dd>
             </div>
           </dl>
         </div>
@@ -113,20 +114,18 @@ export function Contact() {
               <span className="grid size-12 place-items-center rounded-full bg-navy-tint text-navy">
                 <CheckIcon />
               </span>
-              <h3 className="t-h3 mt-6">Your request is ready in WhatsApp</h3>
-              <p className="mt-3 max-w-[34ch] text-ink-soft">
-                Press send in WhatsApp and it reaches us in Bissau. If the app didn't open, message us directly.
-              </p>
+              <h3 className="t-h3 mt-6">{cta.form.sentTitle}</h3>
+              <p className="mt-3 max-w-[34ch] text-ink-soft">{cta.form.sentBody}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Action href={sent} external icon={<WhatsAppIcon />}>
-                  Open WhatsApp
+                  {cta.form.openWhatsApp}
                 </Action>
                 <button
                   type="button"
                   onClick={() => setSent(null)}
                   className="min-h-12 rounded-full px-5 font-medium text-navy hover:bg-navy-tint"
                 >
-                  Edit my request
+                  {cta.form.edit}
                 </button>
               </div>
             </div>
@@ -143,14 +142,14 @@ export function Contact() {
                     <div key={f.name} className={cn("flex flex-col gap-2", f.full && "sm:col-span-2")}>
                       <label htmlFor={id} className="text-[0.9375rem] font-medium">
                         {label}
-                        {f.required ? null : <span className="font-normal text-muted"> (optional)</span>}
+                        {f.required ? null : <span className="font-normal text-muted"> ({cta.form.optional})</span>}
                       </label>
                       {f.options ? (
                         <select id={id} name={f.name} defaultValue="" className={cn(field, "appearance-none")}>
                           <option value="" disabled>
-                            Choose
+                            {cta.form.choose}
                           </option>
-                          {f.options.map((o) => (
+                          {[...site.incoterms, cta.form.notSure].map((o) => (
                             <option key={o}>{o}</option>
                           ))}
                         </select>
@@ -162,7 +161,7 @@ export function Contact() {
                           name={f.name}
                           type={f.type ?? "text"}
                           required={f.required}
-                          placeholder={f.placeholder}
+                          placeholder={f.placeholder && cta.form.placeholders[f.placeholder]}
                           autoComplete={f.autoComplete}
                           className={field}
                         />

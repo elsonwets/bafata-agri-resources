@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { journey } from "@/data/content";
+import { useDict } from "@/i18n";
 import { Heading, Photo } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
  * are reading. On small screens each stage simply carries its own photo.
  */
 export function Journey() {
+  const { journey } = useDict();
   const [active, setActive] = useState(0);
   const stepsRef = useRef<HTMLOListElement>(null);
 
@@ -52,7 +53,7 @@ export function Journey() {
                 aria-hidden
                 className="num absolute bottom-5 left-5 rounded-full bg-white/85 px-3.5 py-1.5 text-[0.875rem] font-medium backdrop-blur-md"
               >
-                Stage {active + 1} of {journey.steps.length}
+                {journey.stage(active + 1, journey.steps.length)}
               </p>
             </div>
           </div>
@@ -60,7 +61,7 @@ export function Journey() {
           <ol ref={stepsRef} className="flex flex-col">
             {journey.steps.map((s, i) => (
               <li
-                key={s.n}
+                key={s.title}
                 data-step={i}
                 aria-current={i === active ? "step" : undefined}
                 className={cn(
@@ -76,7 +77,7 @@ export function Journey() {
                   className="mb-7 aspect-[3/2] rounded-[20px] lg:hidden"
                 />
                 <p className="num text-[0.9375rem] font-medium text-shell">
-                  {s.n} · {s.sub}
+                  {String(i + 1).padStart(2, "0")} · {s.sub}
                 </p>
                 <h3 className="mt-2 text-[clamp(1.75rem,3vw,2.5rem)] leading-tight font-semibold tracking-[-0.035em]">
                   {s.title}

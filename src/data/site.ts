@@ -39,46 +39,21 @@ export const site = {
   updated: "2026-10-28",
 
   /**
-   * Two distinct dates, as confirmed by the client. Preparation (volume
-   * reservation, logistics, contracts) opens well before the government
-   * sets the reference price and village buying officially starts.
+   * Two distinct dates, as confirmed by the client: preparation (volume
+   * reservation, logistics, contracts) opens in February, well before the
+   * government sets the reference price and village buying officially
+   * starts in April. Month names per language live in the dictionaries.
    */
   campaign: {
     year: 2027,
-    preparationMonth: "February",
-    openingMonth: "April",
+    preparationISO: "2027-02-01",
     openingISO: "2027-04-01",
   },
+
+  incoterms: ["FOB Bissau", "CFR", "CIF", "FAS"],
 } as const;
 
-/**
- * Pre-filled WhatsApp deep links. Encoded once, reused everywhere, so every
- * entry point lands in the same inbox with context already attached.
- */
+/** Pre-filled WhatsApp deep link, so every entry point lands in the same
+ *  inbox with context already attached. Messages live in the dictionaries. */
 export const wa = (message: string) =>
   `${site.whatsapp}?text=${encodeURIComponent(message)}`;
-
-export const waLinks = {
-  general: wa(
-    `Hello Bafata Agri Resources — I found you through your website and I'd like to discuss raw cashew nuts from Guinea-Bissau.`,
-  ),
-  campaign: wa(
-    `Hello Bafata Agri Resources — I'd like to prepare the ${site.campaign.year} campaign and reserve volume. Please send me your terms.`,
-  ),
-  quote: wa(
-    `Hello Bafata Agri Resources — I would like a quotation for raw cashew nuts (RCN). Volume: ___ MT. Destination port: ___. Incoterm: ___.`,
-  ),
-  documents: wa(
-    `Hello Bafata Agri Resources — I have a question about export documentation for raw cashew nuts from Guinea-Bissau.`,
-  ),
-} as const;
-
-export const nav = [
-  { label: "Origin", href: "#origin" },
-  { label: "Operation", href: "#operation" },
-  { label: "Journey", href: "#journey" },
-  { label: "Quality", href: "#quality" },
-  { label: "Markets", href: "#markets" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
-] as const;

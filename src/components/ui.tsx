@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { bySlug, src } from "@/data/photos";
+import { useLang } from "@/i18n";
+import { photoAltPt } from "@/i18n/photo-alt-pt";
 import { cn } from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */
@@ -36,6 +38,8 @@ export function Photo({
   alt,
 }: PhotoProps) {
   const photo = bySlug(slug);
+  const lang = useLang();
+  const caption = lang === "fr" ? photo.fr : lang === "pt" ? (photoAltPt[slug] ?? photo.en) : photo.en;
 
   return (
     <div
@@ -52,7 +56,7 @@ export function Photo({
           .filter(Boolean)
           .join(", ")}
         sizes={sizes}
-        alt={alt ?? photo.en}
+        alt={alt ?? caption}
         width={1800}
         height={Math.round((1800 * photo.h) / photo.w)}
         loading={priority ? "eager" : "lazy"}

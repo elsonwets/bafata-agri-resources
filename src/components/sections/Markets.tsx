@@ -1,4 +1,5 @@
-import { markets } from "@/data/content";
+import { useDict } from "@/i18n";
+import { site } from "@/data/site";
 import { MAP_VIEWBOX, mapDestinations, mapOrigin } from "@/data/map-points";
 import { Heading } from "@/components/ui";
 
@@ -16,12 +17,13 @@ function arcPath(a: { x: number; y: number }, b: { x: number; y: number }) {
   return `M ${a.x} ${a.y} Q ${(a.x + b.x) / 2} ${(a.y + b.y) / 2 - lift} ${b.x} ${b.y}`;
 }
 
-/** Only the destinations listed in the content file are drawn. */
-const destinations = mapDestinations.filter((d) => markets.routes.some((r) => r.country === d.country));
 
 const mask = "url(/map/world-dots.svg) center / 100% 100% no-repeat";
 
 export function Markets() {
+  const { markets } = useDict();
+  /** Only the destinations listed in the dictionary are drawn. */
+  const destinations = mapDestinations.filter((d) => markets.routes.some((r) => r.id === d.id));
   return (
     <section id="markets" aria-labelledby="markets-title" className="defer section">
       <div className="shell">
@@ -29,8 +31,8 @@ export function Markets() {
           <Heading id="markets-title">{markets.heading.join(" ")}</Heading>
           <div>
             <p className="t-lead max-w-[34rem]">{markets.body}</p>
-            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Incoterms we ship on">
-              {markets.incoterms.map((t) => (
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label={markets.incotermsLabel}>
+              {site.incoterms.map((t) => (
                 <li key={t} className="rounded-full bg-raised px-4 py-1.5 text-[0.875rem] font-medium shadow-[0_0_0_1px_var(--line)]">
                   {t}
                 </li>
@@ -50,7 +52,7 @@ export function Markets() {
               viewBox={`0 0 ${MAP_VIEWBOX.w} ${MAP_VIEWBOX.h}`}
               className="absolute inset-0 h-full w-full"
               role="img"
-              aria-label={`Shipping routes from the Port of Bissau to ${markets.routes.map((r) => r.city).join(", ")}`}
+              aria-label={markets.mapLabel(markets.routes.map((r) => r.city).join(", "))}
             >
               {destinations.map((d) => (
                 <path

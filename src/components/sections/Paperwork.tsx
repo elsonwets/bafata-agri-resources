@@ -1,8 +1,10 @@
-import { paperwork } from "@/data/content";
-import { waLinks } from "@/data/site";
+import { useDict } from "@/i18n";
+import { wa } from "@/data/site";
 import { Action, Heading, WhatsAppIcon } from "@/components/ui";
 
 export function Paperwork() {
+  const t = useDict();
+  const { paperwork } = t;
   return (
     <section id="documents" aria-labelledby="documents-title" className="defer section">
       <div className="shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
@@ -11,8 +13,8 @@ export function Paperwork() {
             {paperwork.heading.join(" ")}
           </Heading>
           <p className="t-lead mt-7 max-w-[32rem]">{paperwork.body}</p>
-          <Action href={waLinks.documents} external variant="secondary" icon={<WhatsAppIcon />} className="mt-9">
-            Ask about a document
+          <Action href={wa(t.wa.documents)} external variant="secondary" icon={<WhatsAppIcon />} className="mt-9">
+            {paperwork.ask}
           </Action>
         </div>
 

@@ -10,33 +10,104 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BuyRawCashewNutsIndexRouteImport } from './routes/buy-raw-cashew-nuts/index'
+import { Route as CashewExportDocumentationIndexRouteImport } from './routes/cashew-export-documentation/index'
+import { Route as FrIndexRouteImport } from './routes/fr/index'
+import { Route as PtIndexRouteImport } from './routes/pt/index'
+import { Route as RawCashewNutsGuineaBissauIndexRouteImport } from './routes/raw-cashew-nuts-guinea-bissau/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuyRawCashewNutsIndexRoute = BuyRawCashewNutsIndexRouteImport.update({
+  id: '/buy-raw-cashew-nuts/',
+  path: '/buy-raw-cashew-nuts/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CashewExportDocumentationIndexRoute =
+  CashewExportDocumentationIndexRouteImport.update({
+    id: '/cashew-export-documentation/',
+    path: '/cashew-export-documentation/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FrIndexRoute = FrIndexRouteImport.update({
+  id: '/fr/',
+  path: '/fr/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtIndexRoute = PtIndexRouteImport.update({
+  id: '/pt/',
+  path: '/pt/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RawCashewNutsGuineaBissauIndexRoute =
+  RawCashewNutsGuineaBissauIndexRouteImport.update({
+    id: '/raw-cashew-nuts-guinea-bissau/',
+    path: '/raw-cashew-nuts-guinea-bissau/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/buy-raw-cashew-nuts/': typeof BuyRawCashewNutsIndexRoute
+  '/cashew-export-documentation/': typeof CashewExportDocumentationIndexRoute
+  '/fr/': typeof FrIndexRoute
+  '/pt/': typeof PtIndexRoute
+  '/raw-cashew-nuts-guinea-bissau/': typeof RawCashewNutsGuineaBissauIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/buy-raw-cashew-nuts': typeof BuyRawCashewNutsIndexRoute
+  '/cashew-export-documentation': typeof CashewExportDocumentationIndexRoute
+  '/fr': typeof FrIndexRoute
+  '/pt': typeof PtIndexRoute
+  '/raw-cashew-nuts-guinea-bissau': typeof RawCashewNutsGuineaBissauIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/buy-raw-cashew-nuts/': typeof BuyRawCashewNutsIndexRoute
+  '/cashew-export-documentation/': typeof CashewExportDocumentationIndexRoute
+  '/fr/': typeof FrIndexRoute
+  '/pt/': typeof PtIndexRoute
+  '/raw-cashew-nuts-guinea-bissau/': typeof RawCashewNutsGuineaBissauIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/buy-raw-cashew-nuts/'
+    | '/cashew-export-documentation/'
+    | '/fr/'
+    | '/pt/'
+    | '/raw-cashew-nuts-guinea-bissau/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/buy-raw-cashew-nuts'
+    | '/cashew-export-documentation'
+    | '/fr'
+    | '/pt'
+    | '/raw-cashew-nuts-guinea-bissau'
+  id:
+    | '__root__'
+    | '/'
+    | '/buy-raw-cashew-nuts/'
+    | '/cashew-export-documentation/'
+    | '/fr/'
+    | '/pt/'
+    | '/raw-cashew-nuts-guinea-bissau/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BuyRawCashewNutsIndexRoute: typeof BuyRawCashewNutsIndexRoute
+  CashewExportDocumentationIndexRoute: typeof CashewExportDocumentationIndexRoute
+  FrIndexRoute: typeof FrIndexRoute
+  PtIndexRoute: typeof PtIndexRoute
+  RawCashewNutsGuineaBissauIndexRoute: typeof RawCashewNutsGuineaBissauIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +119,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/buy-raw-cashew-nuts/': {
+      id: '/buy-raw-cashew-nuts/'
+      path: '/buy-raw-cashew-nuts'
+      fullPath: '/buy-raw-cashew-nuts/'
+      preLoaderRoute: typeof BuyRawCashewNutsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cashew-export-documentation/': {
+      id: '/cashew-export-documentation/'
+      path: '/cashew-export-documentation'
+      fullPath: '/cashew-export-documentation/'
+      preLoaderRoute: typeof CashewExportDocumentationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/': {
+      id: '/fr/'
+      path: '/fr'
+      fullPath: '/fr/'
+      preLoaderRoute: typeof FrIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/': {
+      id: '/pt/'
+      path: '/pt'
+      fullPath: '/pt/'
+      preLoaderRoute: typeof PtIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raw-cashew-nuts-guinea-bissau/': {
+      id: '/raw-cashew-nuts-guinea-bissau/'
+      path: '/raw-cashew-nuts-guinea-bissau'
+      fullPath: '/raw-cashew-nuts-guinea-bissau/'
+      preLoaderRoute: typeof RawCashewNutsGuineaBissauIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BuyRawCashewNutsIndexRoute: BuyRawCashewNutsIndexRoute,
+  CashewExportDocumentationIndexRoute: CashewExportDocumentationIndexRoute,
+  FrIndexRoute: FrIndexRoute,
+  PtIndexRoute: PtIndexRoute,
+  RawCashewNutsGuineaBissauIndexRoute: RawCashewNutsGuineaBissauIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
